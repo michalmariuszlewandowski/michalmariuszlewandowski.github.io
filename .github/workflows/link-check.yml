@@ -20,7 +20,6 @@ jobs:
           args: >-
             --verbose
             --no-progress
-            --exclude-mail
             --exclude "https://www.linkedin.com/.*"
             --exclude "https://at.linkedin.com/.*"
             --exclude "https://scholar.google.*"
