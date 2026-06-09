@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CantorNet | Micha&#322; Lewandowski</title>
+    <meta
+      name="description"
+      content="CantorNet is a family of ReLU neural networks that analytically realizes the same decision boundaries through different neural architectures."
+    />
+    <link rel="canonical" href="https://michalmariuszlewandowski.github.io/posts/cantornet.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Michał Lewandowski" />
+    <meta property="og:title" content="CantorNet" />
+    <meta property="og:description" content="A family of ReLU neural networks that analytically realizes the same decision boundaries through different neural architectures." />
+    <meta property="og:url" content="https://michalmariuszlewandowski.github.io/posts/cantornet.html" />
+    <meta property="og:image" content="https://michalmariuszlewandowski.github.io/profile-pic/vacation-profile-crop.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="../math.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <p class="eyebrow">Micha&#322; Lewandowski</p>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#projects">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="post-main">
+      <article class="post-shell">
+        <header class="post-heading">
+          <div class="paper-meta"><a class="text-link" href="https://www.neurreps.org/">NeurIPS 2024 Workshop on Symmetry and Geometry in Neural Representations</a></div>
+          <h1>CantorNet: A Sandbox for Testing Geometrical and Topological Complexity Measures</h1>
+          <p class="post-summary">
+            CantorNet is a family of ReLU neural networks that analytically realizes the same
+            decision boundaries through different neural architectures.
+          </p>
+          <ul class="author-list" aria-label="Authors">
+            <li>
+              <span class="author-name">Michal Lewandowski</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/michal-mariusz-lewandowski/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=umFBO_gAAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Hamid Eghbalzadeh</span>
+              <span class="author-links">[<a class="text-link" href="https://eghbalz.github.io/">Website</a>, <a class="text-link" href="https://www.linkedin.com/in/heghbalz">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=-yGxzA4AAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Bernhard A. Moser</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/bernhard-moser-00794988/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.at/citations?hl=en&amp;user=_DuPpPEAAAAJ">Google Scholar</a>]</span>
+            </li>
+          </ul>
+          <div class="link-row">
+            <a class="button" href="https://arxiv.org/abs/2411.19713">Paper</a>
+            <a class="button" href="https://github.com/michalmariuszlewandowski/CantorNet">Code</a>
+            <a class="button" href="../index.html#research">Back to research</a>
+          </div>
+        </header>
+
+        <div class="post-content">
+          <h2>Overview</h2>
+          <p>
+            The construction of CantorNet is inspired by the triadic construction of the Cantor set. The Cantor set
+            is self-similar: at each step, the middle third is removed, leaving smaller copies of
+            the same structure behind.
+            This construction can be written as
+            \[
+              C_0=[0,1],\qquad
+              C_{n+1}=\frac{1}{3}C_n\cup\left(\frac{2}{3}+\frac{1}{3}C_n\right),
+            \]
+            where the limiting set \(C=\bigcap_{n=0}^{\infty}C_n\) which, while geometrically simple to define, 
+            features interesting topological and measure-theoretical properties.
+          </p>
+          <p>
+            In CantorNet we use this idea to create a family of neural networks. Instead of relying on 
+            real-world datasets where the true geometry of decision boundaries is unknown and only approximated during training,
+            we introduce a family of ReLU neural networks whose decision boundaries can be made increasingly ragged
+            while still remaining analytically known. We provide an exact characterization of the 0-pre-image
+            through the generating function
+            \[
+              A:[0,1]\to[0,1],
+              \qquad
+              A(x)=\max\{-3x+1,\,3x-2\}.
+            \]
+          </p>
+          <p>
+            Recursively nesting this map gives
+            \[
+              A^{(k+1)}(x)=A\!\left(A^{(k)}(x)\right),
+              \qquad
+              A^{(1)}(x)=A(x),
+            \]
+            and the corresponding decision manifold can be written as
+            \[
+              R_k=\left\{(x,y)\in[0,1]^2:
+              y\le\frac{A^{(k)}(x)+1}{2}\right\}.
+            \]
+            We then define CantorNet as any family of ReLU networks that realize these decision boundaries.
+          </p>
+          <figure class="post-figure cantor-construction-figure">
+            <img
+              src="figs/CantorNet-construction.png"
+              loading="lazy"
+              alt="CantorNet construction diagram showing recursive Cantor-set intervals and the corresponding ReLU-network decision-boundary profiles."
+            />
+            <figcaption>
+              CantorNet construction: the recursive Cantor-set structure induces increasingly
+              fine decision boundaries, which can be realized by ReLU networks.
+            </figcaption>
+          </figure>
+          <p>
+            We show that decision boundaries $R_k$ can be described in two ways, one which uses the fractal contruction of the Cantor set, and the other
+            which relies on merging polyhedral bodies (we refer to this as the disjunctive normal form, or  DNF-construction). 
+            Both descriptions are exact, and the same decision boundary can be realized by different network architectures.
+            We refer an interested reader to the paper for the derivations and exact formulas.
+            The DNF-style construction used to build these boundaries is partly inspired by the fuzzy logic, as introduced in
+            <a class="text-link" href="https://doi.org/10.1016/S0019-9958(65)90241-X">Zadeh's foundational paper on fuzzy sets</a>.
+            In that formulation, a set is represented by a graded membership, or
+            belonging, function \(\mu_A:X\to[0,1]\),  and the basic set operations become
+          </p>
+          <p>
+            \[
+              \mu_{\neg A}(x)=1-\mu_A(x),\quad
+              \mu_{A\cup B}(x)=\max(\mu_A(x),\mu_B(x)),\quad
+              \mu_{A\cap B}(x)=\min(\mu_A(x),\mu_B(x)).
+            \]
+          </p>
+          <p>
+            The logic behind the nested \(\min(\cdots,\max(\cdots))\) expressions is as follows:
+            \(\max\) acts like OR, \(\min\) acts like AND, and the adapted De Morgan laws let
+            complements move through the construction while preserving the (graded) membership
+            interpretation.
+          </p>
+
+          <h2>Extensions</h2>
+<!-- <p>
+  The CantorNet idea can be extended from one Cantor-inspired boundary to a
+  family of finite self-similar decision sets. The objective here is, again  
+  to keep the geometry analytically known, with each shape having an exact
+  recursive description, and an exact
+  finite-depth boundary. Then, these constructions can be used to test whether
+   a learning algorithm recovers the recursive rule or not.
+</p>
+<p>
+  A convenient construction uses a coordinate-wise fold map
+  \(\Theta_{b,d}\), a retained-cell mask \(M\subset [b]^d\), and a recursion
+  depth \(K\). The fold map sends each grid cell back to the unit cube, while
+  the mask decides which cells are retained. A fold-gate network can be written as
+</p>
+<p>
+  \[
+    N_{M,K}(x)=
+    \max_{0\le j < K} H_M\!\left(\Theta_{b,d}^{\,j}(x)\right).
+  \]
+</p>
+<p>
+  The finite recursive target is then the zero-preimage
+</p>
+<p>
+  \[
+    N_{M,K}^{-1}(0)
+    =
+    \left\{
+      x:
+      H_M\!\left(\Theta_{b,d}^{\,j}(x)\right)=0
+      \text{ for all }0\le j < K
+    \right\}.
+  \]
+</p>
+<p>
+  Different choices of \(M\), \(b\), and \(d\) give different fractal-like
+  families. In one dimension, retaining the left and right thirds gives
+  Cantor-type sets. In two dimensions, product masks give Cantor dusts, while
+  retaining all cells except the center gives Sierpiński-carpet-type sets.
+  Retaining the center and four corners gives Vicsek-type sets. In three
+  dimensions, retaining the usual twenty cubes gives Menger-sponge-type
+  approximants. A related simplex fold can also be used for Sierpiński-gasket-type
+  targets.
+</p>
+<p>
+  These examples are useful because they do not all have the same topology.
+  Some targets are connected, some are disconnected, and some contain many
+  holes. The boundaries are analytically enumerable at every finite depth, but
+  they are not always connected or drawable with a single pen stroke. That is a
+  feature rather than a bug: the benchmark should not only test one smooth or
+  graph-like boundary type.
+</p>
+<p>
+  The Minimum Description Length (MDL) viewpoint gives the central comparison.
+  One explanation is recursive: specify the base \(b\), dimension \(d\),
+  recursion depth \(K\), and retained mask \(M\). Another explanation is
+  cellwise: list the retained cells at depth \(K\), or assign labels directly
+  to all level-\(K\) cells.
+</p>
+<p>
+  If
+</p>
+<p>
+  \[
+    B=b^d,\qquad q=|M|,
+  \]
+</p>
+<p>
+  then the recursive code can be written with length roughly
+</p>
+<p>
+  \[
+    L(P_{\mathrm{rec}})
+    \le
+    B+2\lfloor\log_2 K\rfloor+c_{\mathrm{interp}},
+  \]
+</p>
+<p>
+  while a natural direct code that lists the \(q^K\) retained cells scales like
+</p>
+<p>
+  \[
+    L(P_{\mathrm{dir}})
+    \le
+    q^K K\lceil\log_2 B\rceil+c_{\mathrm{list}}q^K.
+  \]
+</p>
+<p>
+  If we compare only classifiers with the same number of positive cells, a
+  fair cellwise subset code is
+</p>
+<p>
+  \[
+    L(P_{\mathrm{subset}})
+    =
+    \log_2 {B^K \choose q^K}.
+  \]
+</p>
+<p>
+  This still grows exponentially in \(K\), whereas the recursive description
+  grows only logarithmically in \(K\), once the first-level mask has been
+  specified. Thus the same finite labels can have two very different
+  explanations: a short generating rule or a long cellwise description.
+</p>
+
+<h2>Research question: which optimizers recover recursive rules?</h2>
+<p>
+  This turns the construction into a learning problem. The question is not only
+  whether a neural network can fit the observed labels. At a fixed recursion
+  depth, many architectures may achieve high same-depth accuracy. The sharper
+  question is:
+</p>
+<p>
+  \[
+    \text{did training recover the recursive generator, or did it interpolate the finite cells?}
+  \]
+</p>
+<p>
+  A recovered generator should identify the mask \(M\), reuse the same rule
+  across scales, and extrapolate to deeper recursion depths. A cellwise fit may
+  perform well at the observed depth \(K\), but it has no intrinsic rule for
+  depth \(K+1\) or \(K+2\). Depth extrapolation therefore becomes the main test
+  of rule recovery.
+</p>
+<p>
+  The proposed benchmark uses a two-route supernetwork. One route exposes a
+  recursive fold-gate representation. The other route exposes enough cellwise
+  capacity to fit the observed finite grid. Both routes can explain the training
+  labels at depth \(K\), but they correspond to different descriptions. The
+  optimizer is then evaluated by the explanation it selects.
+</p>
+<p>
+  Same-depth accuracy is only a necessary check. A successful recursive-rule
+  run should also have a short recovered program, low residual code length, and
+  good extrapolation to deeper recursion levels. A cellwise-interpolation run is
+  one that fits the observed depth but fails to extrapolate. A hybrid run
+  recovers part of the recursive rule but still needs a substantial residual
+  cellwise correction.
+</p>
+<p>
+  This gives a way to compare optimizer families by their implicit bias. We can
+  test stochastic gradient descent and momentum methods, adaptive methods such
+  as Adam and AdamW, sharpness-aware methods, structured preconditioners, and
+  Muon-style matrix-update methods. The goal is not to rank optimizers by final
+  loss alone, but to ask which ones prefer the short recursive explanation when
+  both the recursive and cellwise explanations are available.
+</p>
+<p>
+  In this sense, the generalized CantorNet family becomes a controlled testbed
+  for optimizer-induced rule recovery. The targets are exactly known, the
+  competing explanations have measurable description lengths, and success or
+  failure can be judged by whether the learned model generalizes the recursive
+  rule beyond the depth on which it was trained.
+</p> -->
+          <section class="bibtex" aria-labelledby="bibtex">
+            <h2 id="bibtex">BibTeX</h2>
+            <pre><code>@inproceedings{lewandowski2024cantornet,
+  title = {{CantorNet}: A Sandbox for Testing Geometrical and Topological Complexity Measures},
+  author = {Lewandowski, Michal and Eghbalzadeh, Hamid and Moser, Bernhard A.},
+  booktitle = {Proceedings Track, NeurIPS 2024 Workshop on Symmetry and Geometry in Neural Representations},
+  year = {2024},
+  eprint = {2411.19713},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.NE},
+  doi = {10.48550/arXiv.2411.19713},
+  url = {https://arxiv.org/abs/2411.19713},
+  note = {Proceedings track}
+}</code></pre>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><a class="text-link" href="../index.html">Home</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

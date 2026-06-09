@@ -1,0 +1,28 @@
+name: Link check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 7 * * 1"
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: true
+          args: >-
+            --verbose
+            --no-progress
+            --exclude-mail
+            --exclude "https://www.linkedin.com/.*"
+            --exclude "https://at.linkedin.com/.*"
+            --exclude "https://scholar.google.*"
+            "./**/*.html"
+            "./README.md"

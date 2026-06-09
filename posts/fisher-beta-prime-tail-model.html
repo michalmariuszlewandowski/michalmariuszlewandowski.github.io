@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beyond the Generalized Pareto | Micha&#322; Lewandowski</title>
+    <meta
+      name="description"
+      content="An MSc thesis note on a Fisher / beta-prime tail model for finite-threshold peaks-over-threshold extreme-value estimation."
+    />
+    <link rel="canonical" href="https://michalmariuszlewandowski.github.io/posts/fisher-beta-prime-tail-model.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Michał Lewandowski" />
+    <meta property="og:title" content="Beyond the Generalized Pareto" />
+    <meta property="og:description" content="A Fisher / beta-prime extension of the GPD exceedance model for finite-threshold tail estimation." />
+    <meta property="og:url" content="https://michalmariuszlewandowski.github.io/posts/fisher-beta-prime-tail-model.html" />
+    <meta property="og:image" content="https://michalmariuszlewandowski.github.io/profile-pic/vacation-profile-crop.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="../math.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <p class="eyebrow">Micha&#322; Lewandowski</p>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#projects">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="post-main">
+      <article class="post-shell">
+        <header class="post-heading">
+          <div class="paper-meta">MSc thesis, University of Warsaw / Inria Grenoble, 2018</div>
+          <h1>Beyond the Generalized Pareto: A Fisher / Beta-Prime Tail Model for Peaks over Threshold</h1>
+          <p class="post-summary">
+            An MSc thesis project on using a scaled Fisher / beta-prime model as a
+            finite-threshold extension of the Generalized Pareto Distribution for extreme
+            quantile estimation.
+          </p>
+          <ul class="author-list" aria-label="Thesis context">
+            <li>
+              <span class="author-name">Micha&#322; Lewandowski</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/michal-mariusz-lewandowski/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=umFBO_gAAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Julyan Arbel</span>
+              <span class="author-links">[<a class="text-link" href="https://www.julyanarbel.com/">Website</a>, <a class="text-link" href="https://scholar.google.com/citations?user=Q7P4K3wAAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">John M. Noble</span>
+              <span class="author-links">[<a class="text-link" href="https://www.mimuw.edu.pl/~noble/">MIM UW page</a>]</span>
+            </li>
+          </ul>
+          <div class="link-row">
+            <a class="button" href="../index.html#research">Back to research</a>
+          </div>
+        </header>
+
+        <div class="post-content">
+          <h2>Thesis context</h2>
+          <p>
+            This project came from my MSc work on extreme-value statistics. The research was
+            carried out at Inria Grenoble with Julyan Arbel during my Erasmus exchange. The
+            MSc degree was granted by the University of Warsaw, under the supervision of John M.
+            Noble at the Faculty of Mathematics, Informatics and Mechanics.
+          </p>
+
+          <h2>Problem Statement</h2>
+          <p>
+            Extreme Value Theory gives a principled way to estimate rare-event quantities, but
+            the hardest practical cases are finite. If \(X_1,\ldots,X_n\) are observations from
+            an unknown distribution \(F\), the target may be a high quantile
+          </p>
+          <p>
+            \[
+              q_p = F^{-1}(p), \qquad p \approx 0.99,\;0.995,\;0.999.
+            \]
+          </p>
+          <p>
+            At those levels, the empirical sample contains limited direct information. The
+            Peaks over Threshold method therefore chooses a high threshold \(u\), keeps only
+            exceedances \(Y=X-u\mid X>u\), and models their conditional distribution.
+          </p>
+
+          <h2>The standard model</h2>
+          <p>
+            The classical exceedance model is the Generalized Pareto Distribution:
+          </p>
+          <p>
+            \[
+              G_{\xi,\sigma}(y)
+              =
+              1-\left(1+\frac{\xi y}{\sigma}\right)^{-1/\xi},
+              \qquad
+              1+\frac{\xi y}{\sigma}>0.
+            \]
+          </p>
+          <p>
+            The GPD is justified asymptotically as the threshold moves into the tail. In real
+            datasets, however, the threshold cannot be pushed arbitrarily high: a higher threshold
+            reduces bias but leaves fewer exceedances. The thesis targets this middle
+            regime: finite thresholds, small tail samples, and extreme quantile targets.
+          </p>
+
+          <h2>The Fisher / beta-prime extension</h2>
+          <p>
+            The proposed alternative is a scaled beta-prime distribution, also known as a Pearson
+            Type VI or Fisher-type model:
+          </p>
+          <p>
+            \[
+              f(y\mid a,b,s)
+              =
+              \frac{1}{sB(a,b)}
+              \left(\frac{y}{s}\right)^{a-1}
+              \left(1+\frac{y}{s}\right)^{-a-b},
+              \qquad y>0.
+            \]
+          </p>
+          <p>
+            The parameter \(b\) controls the far-tail decay, \(s\) controls scale, and \(a\)
+            changes the curvature close to the threshold. That extra near-threshold flexibility
+            is the reason the model matters as a finite-threshold correction.
+          </p>
+
+          <h2>Why it is not arbitrary</h2>
+          <p>
+            The beta-prime model contains the positive-shape GPD as a special case. Use
+          </p>
+          <p>
+            \[
+              a=e^\delta,\qquad
+              b=\frac{1}{\xi},\qquad
+              s=\frac{\sigma}{\xi},\qquad
+              \xi>0.
+            \]
+          </p>
+          <p>
+            When \(\delta=0\), we have \(a=1\), and the beta-prime density becomes the
+            positive-shape GPD density:
+          </p>
+          <p>
+            \[
+              f(y)
+              =
+              \frac{1}{\sigma}
+              \left(1+\frac{\xi y}{\sigma}\right)^{-1-1/\xi}.
+            \]
+          </p>
+          <p>
+            This makes the model a nested extension rather than a disconnected alternative.
+            The extra parameter \(\delta\) measures departure from the GPD baseline.
+          </p>
+
+          <h2>Quantile estimation</h2>
+          <p>
+            If \(p_u=P(X>u)\) and \(H\) is the fitted exceedance distribution, then
+          </p>
+          <p>
+            \[
+              P(X>u+y)=p_u\{1-H(y)\}.
+            \]
+          </p>
+          <p>
+            Solving for the original-scale quantile gives
+          </p>
+          <p>
+            \[
+              q_p
+              =
+              u
+              +
+              H^{-1}\left(1-\frac{1-p}{p_u}\right).
+            \]
+          </p>
+          <p>
+            This equation isolates the model comparison. With the threshold and exceedance rate
+            fixed, the difference between the GPD and beta-prime approaches is the fitted
+            conditional quantile \(H^{-1}\).
+          </p>
+
+          <h2>Modern framing</h2>
+          <p>
+            The most conservative framing is not to replace the GPD, but to use a nested Fisher /
+            beta-prime exceedance model as a finite-threshold correction for extreme quantile
+            estimation.
+          </p>
+          <p>
+            A Bayesian extension would place shrinkage on the extra parameter, for example
+          </p>
+          <p>
+            \[
+              \delta\sim N(0,s_\delta^2).
+            \]
+          </p>
+          <p>
+            This pulls the model back toward the GPD when the exceedance data do not support
+            additional flexibility. The right evaluation target is not only likelihood, but
+            extreme-quantile accuracy, threshold stability, and robustness when the ordinary GPD
+            is already adequate.
+          </p>
+
+          <section class="bibtex" aria-labelledby="bibtex">
+            <h2 id="bibtex">BibTeX</h2>
+            <pre><code>@mastersthesis{lewandowski2018fisher,
+  title = {Beyond the Generalized Pareto: A Fisher / Beta-Prime Tail Model for Peaks over Threshold},
+  author = {Lewandowski, Michal},
+  school = {University of Warsaw},
+  year = {2018},
+  note = {MSc thesis research carried out at Inria Grenoble with Julyan Arbel during an Erasmus exchange; supervised at MIM UW by John M. Noble}
+}</code></pre>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><a class="text-link" href="../index.html">Home</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

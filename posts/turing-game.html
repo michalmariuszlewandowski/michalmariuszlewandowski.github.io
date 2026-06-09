@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Turing Game | Micha&#322; Lewandowski</title>
+    <meta
+      name="description"
+      content="The Turing Game is a multiplayer imitation-game experiment for studying whether humans can distinguish AI chatbots from human interlocutors."
+    />
+    <link rel="canonical" href="https://michalmariuszlewandowski.github.io/posts/turing-game.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Michał Lewandowski" />
+    <meta property="og:title" content="The Turing Game" />
+    <meta property="og:description" content="A public multiplayer experiment on LLM interaction, social plausibility, and human detection of AI chatbots." />
+    <meta property="og:url" content="https://michalmariuszlewandowski.github.io/posts/turing-game.html" />
+    <meta property="og:image" content="https://michalmariuszlewandowski.github.io/profile-pic/vacation-profile-crop.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="../math.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <p class="eyebrow">Micha&#322; Lewandowski</p>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#projects">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="post-main">
+      <article class="post-shell">
+        <header class="post-heading">
+          <div class="paper-meta">NeurIPS 2024 Workshop on System-2 Reasoning at Scale</div>
+          <h1>The Turing Game</h1>
+          <p class="post-summary">
+            A public, gamified experiment for studying whether people can distinguish human chat
+            partners from AI chatbots.
+          </p>
+          <ul class="author-list" aria-label="Authors">
+            <li>
+              <span class="author-name">Michal Lewandowski</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/michal-mariusz-lewandowski/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=umFBO_gAAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Simon Lucas Schmid</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/simon-schmid-b46b34107/">LinkedIn</a>, <a class="text-link" href="https://orcid.org/0009-0007-0299-487X">ORCID</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Patrick Mederitsch</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/patrick-mederitsch-8b50b4250/">LinkedIn</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Alexander Aufreiter</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/alexander-aufreiter/">LinkedIn</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Gregor Aichinger</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/gca4020/">LinkedIn</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Felix Nessler</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/felix-nessler-a28064260/">LinkedIn</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Severin Bergsmann</span>
+              <span class="author-links">[<a class="text-link" href="https://openreview.net/profile?id=~Severin_Bergsmann1">OpenReview</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Viktor Szolga</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/viktor-szolga-332b9a32a/">LinkedIn</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Tobias Halmdienst</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/tobias-halmdienst-5290b232b/">LinkedIn</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Bernhard Nessler</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/bernhard-nessler-linz-austria/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=H_ICOW4AAAAJ">Google Scholar</a>]</span>
+            </li>
+          </ul>
+          <div class="link-row">
+            <a class="button" href="https://openreview.net/forum?id=YiquAWqFw3">Paper</a>
+            <a class="button" href="https://www.turinggame.ai/">Project site</a>
+            <a class="button" href="../index.html#research">Back to research</a>
+          </div>
+        </header>
+
+        <div class="post-content">
+          <h2>Driving Question</h2>
+          <p>
+            The Turing Game is an interactive implementation of
+            <a class="text-link" href="https://doi.org/10.1093/mind/LIX.236.433">Turing's original imitation game</a>. It
+            turns the question into an online interaction: two human players and one AI chatbot
+            enter a chat setting, and the humans try to identify who is human and who is machine.
+          </p>
+          <h2>Multiplayer LLM Interaction</h2>
+          <p>
+            Much of conversational AI evaluation is dyadic: one user prompts one model, and the
+            model is judged by answer quality, factuality, or stylistic plausibility. Multiplayer
+            interaction probes a different layer of behavior. In a shared conversation, an LLM must
+            respond not only to a prompt, but also to turn-taking, changing common ground, implicit
+            alliances, suspicion, and strategic ambiguity.
+          </p>
+          <p>
+            Games have become testbeds for language-model agents. Work on
+            <a class="text-link" href="https://ai.meta.com/research/cicero/diplomacy/">Diplomacy</a>
+            combines natural-language negotiation with strategic coordination;
+            <a class="text-link" href="https://arxiv.org/abs/2304.03442">generative-agent
+            environments</a> study believable social behavior in simulated communities; and
+            text-based social-deduction settings such as
+            <a class="text-link" href="https://wordplay-workshop.github.io/wordplay2024/pdfs/24.pdf">AmongAgents</a>
+            examine reasoning under incomplete information, deception, and group deliberation.
+          </p>
+          <p>
+            The Turing Game connects this direction back to the imitation-game question. Its
+            three-player format embeds one model among two humans, so the central measurement is
+            not only whether a single answer sounds human, but whether the model remains plausible
+            under multi-party scrutiny while the human players coordinate to identify it.
+          </p>
+          <p>
+            The experiment asks whether current language models can pass as human in a
+            conversation and collects structured interaction data: where do humans notice
+            machine-like behavior, and where do large language models become hard to distinguish
+            from human interlocutors?
+          </p>
+          <p>
+            The implementation is gamified because that makes the experimental setting easier to
+            scale. It lets people participate naturally, while the system records the decisions,
+            conversations, and interaction patterns needed for analysis.
+          </p>
+          <p>
+            The paper reports early results from a public launch at Ars Electronica Festival in
+            September 2024. The longer-term aim is to better understand human-AI interaction and
+            use that understanding to improve language-based interfaces.
+          </p>
+          <section class="bibtex" aria-labelledby="bibtex">
+            <h2 id="bibtex">BibTeX</h2>
+            <pre><code>@inproceedings{lewandowski2024turinggame,
+  title = {The Turing Game},
+  author = {Lewandowski, Michal and Schmid, Simon Lucas and Mederitsch, Patrick and Aufreiter, Alexander and Aichinger, Gregor and Nessler, Felix and Bergsmann, Severin and Szolga, Viktor and Halmdienst, Tobias and Nessler, Bernhard},
+  booktitle = {NeurIPS 2024 Workshop on System-2 Reasoning at Scale},
+  year = {2024},
+  url = {https://openreview.net/forum?id=YiquAWqFw3},
+  note = {Poster}
+}</code></pre>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><a class="text-link" href="../index.html">Home</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
