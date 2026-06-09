@@ -24,4 +24,5 @@ jobs:
             --exclude "https://at.linkedin.com/.*"
             --exclude "https://scholar.google.*"
             --exclude "https://doi.org/.*"
+            --exclude "https://ojs.aaai.org/.*"
             "./**/*.html"
