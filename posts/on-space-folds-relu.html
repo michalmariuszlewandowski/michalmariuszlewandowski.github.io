@@ -91,29 +91,29 @@
         <div class="post-content">
           <h2>Overview</h2>
           <p>
-            In nature, some quantites are preserved across transformations: energy, momentum, and so on. These are formalized as conservation laws in physics, 
-            like energy conservation or momentum conservation. The observation of such invariants enabled to discover fundamental physical theories, 
-            and to organize them around these preserved quantities, which in turn allowed to make predictions and better understand the surrounding world.
-            
+            In nature, some quantities are preserved across transformations: energy, momentum, and so on. These are formalized as conservation laws in physics,
+            like energy conservation or momentum conservation. The observation of such invariants enabled the discovery of fundamental physical theories
+            and helped organize them around these preserved quantities, which in turn enabled predictions and a better understanding of the surrounding world.
+
             While preservation of physical quantities is a fundamental principle in physics, and is frequently formalized by Noether's theorem as symmetries of a system (as in classical mechanics),
-            these preservation principles remain testable under a suitable experimental design. Similarly, in mathematics, 
+            these preservation principles remain testable under a suitable experimental design. Similarly, in mathematics,
             one often studies which mathematical structures are preserved under a given transformation, such as which properties of a function are preserved under composition, or which geometric structures are preserved under a mapping.
             <!-- In mathematics, one frequently  -->
-            One of the fundamental structures in mathematics is convexity: a set is convex if for any two points in the set, the whole segment between them also belongs to the set. 
-            Convexity is preserved under linear transformations, but not necessarily under non-linear transformations.  In this paper, 
-            we have studied under which conditions convexity is preserved when a ReLU neural network maps continuous input space into its discrete activation-pattern structure, and how does it 
-            translate to the properties of the network in terms of its perfrormance and generalization capacity. We further introduced 
-            a measure of deviation from convexity $\chi$ along a path $\Gamma$, which we call the space folding measure, and which captures how much the network's mapping of input space into activation-pattern space fails to preserve convexity.
-            
+            One of the fundamental structures in mathematics is convexity: a set is convex if for any two points in the set, the whole segment between them also belongs to the set.
+            Convexity is preserved under linear transformations, but not necessarily under nonlinear transformations. In this paper,
+            we studied under which conditions convexity is preserved when a ReLU neural network maps continuous input space into its discrete activation-pattern structure, and how this
+            translates to the properties of the network in terms of its performance and generalization capacity. We further introduced
+            a measure of deviation from convexity $\chi$ along a path $\Gamma$, which we call the space folding measure; it captures how much the network's mapping of input space into activation-pattern space fails to preserve convexity.
+
           </p>
           <p>
             We start with a straight path between two points \(x_0\) and \(x_1\) in input space,
             \[
               \gamma(t)=(1-t)x_0+t x_1,\qquad t\in[0,1].
             \]
-            We then map $\gamma(t)$ through a (trained) ReLU neural network, obtaining  a sequence of activation regions $\Gamma=(\pi_1,\ldots,\pi_n)$, for $n$ intermediate points. 
-            Each activation region corresponds to a particular pattern of which neurons are active or inactive, denoted with 1 or 0, respectively. 
-            Then, we define $\chi(\Gamma):=1-r_1(\Gamma)/r_2(\Gamma)$, where $r_1(\Gamma)=\max_id_H(\pi_1,\pi_i)$ and $r_2(\Gamma)=\sum_id_H(\pi_i,\pi_{i+1})$ is the total travel distance. 
+            We then map $\gamma(t)$ through a (trained) ReLU neural network, obtaining a sequence of activation regions $\Gamma=(\pi_1,\ldots,\pi_n)$, for $n$ intermediate points.
+            Each activation region corresponds to a particular pattern of which neurons are active or inactive, denoted by 1 or 0, respectively.
+            We then define $\chi(\Gamma):=1-r_1(\Gamma)/r_2(\Gamma)$, where $r_1(\Gamma)=\max_i d_H(\pi_1,\pi_i)$ and $r_2(\Gamma)=\sum_i d_H(\pi_i,\pi_{i+1})$ is the total travel distance.
           </p>
           <figure class="post-figure narrow">
             <img
@@ -124,8 +124,8 @@
               alt="Schematic showing an interval in input space mapped through a neural network into activation-pattern space."
             />
             <figcaption>
-              Mapping of a minimal convex set, a straight line in input space,  through a neural
-              network into the corresponding activation-patterns.
+              Mapping of a minimal convex set, a straight line in input space, through a neural
+              network into the corresponding activation patterns.
             </figcaption>
           </figure>
           <figure class="post-figure narrow">
@@ -139,12 +139,12 @@
             <figcaption>
               Mapping of a straight-path walk in input space to the discrete activation space.
               As the path crosses activation regions, we observe that $r_1(\Gamma)$ is not monotonically increasing,
-              what corresponds to a physical ``folding'' of the space.
+              which corresponds to a physical ``folding'' of the space.
             </figcaption>
           </figure>
           <p>
             We then link $\chi$ to the generalization capacity of the network and show its sensitivity to the 
-            compactnes of the representation in the Kolmogorov sense.
+            compactness of the representation in the Kolmogorov sense.
           </p>
           <figure class="post-figure">
             <img
@@ -156,8 +156,8 @@
             />
             <figcaption>
               Folding intuition. Along a walk $\Gamma$ through activation regions, $d_H(\pi_1,\pi_i)$
-              changes monotonocity (left), what corresponds to traversering an arrangmenet of activation regions as depicited in the middle
-              figure. If that was to happen in a continuous space, it would require a physical ``space folding'' (right).
+              changes monotonicity (left), which corresponds to traversing an arrangement of activation regions as depicted in the middle
+              figure. If that were to happen in a continuous space, it would require a physical ``space folding'' (right).
             </figcaption>
           </figure>
           <p>

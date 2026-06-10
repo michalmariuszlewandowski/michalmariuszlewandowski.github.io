@@ -91,11 +91,11 @@
               C_0=[0,1],\qquad
               C_{n+1}=\frac{1}{3}C_n\cup\left(\frac{2}{3}+\frac{1}{3}C_n\right),
             \]
-            where the limiting set \(C=\bigcap_{n=0}^{\infty}C_n\) which, while geometrically simple to define, 
+            where the limiting set \(C=\bigcap_{n=0}^{\infty}C_n\), while geometrically simple to define,
             features interesting topological and measure-theoretical properties.
           </p>
           <p>
-            In CantorNet we use this idea to create a family of neural networks. Instead of relying on 
+            In CantorNet we use this idea to create a family of neural networks. Instead of relying on
             real-world datasets where the true geometry of decision boundaries is unknown and only approximated during training,
             we introduce a family of ReLU neural networks whose decision boundaries can be made increasingly ragged
             while still remaining analytically known. We provide an exact characterization of the 0-pre-image
@@ -132,14 +132,14 @@
             </figcaption>
           </figure>
           <p>
-            We show that decision boundaries $R_k$ can be described in two ways, one which uses the fractal contruction of the Cantor set, and the other
-            which relies on merging polyhedral bodies (we refer to this as the disjunctive normal form, or  DNF-construction). 
+            We show that decision boundaries $R_k$ can be described in two ways, one which uses the fractal construction of the Cantor set, and the other
+            which relies on merging polyhedral bodies (we refer to this as the disjunctive normal form, or DNF construction).
             Both descriptions are exact, and the same decision boundary can be realized by different network architectures.
-            We refer an interested reader to the paper for the derivations and exact formulas.
-            The DNF-style construction used to build these boundaries is partly inspired by the fuzzy logic, as introduced in
+            We refer interested readers to the paper for the derivations and exact formulas.
+            The DNF-style construction used to build these boundaries is partly inspired by fuzzy logic, as introduced in
             <a class="text-link" href="https://doi.org/10.1016/S0019-9958(65)90241-X">Zadeh's foundational paper on fuzzy sets</a>.
             In that formulation, a set is represented by a graded membership, or
-            belonging, function \(\mu_A:X\to[0,1]\),  and the basic set operations become
+            belonging function \(\mu_A:X\to[0,1]\), and the basic set operations become
           </p>
           <p>
             \[
