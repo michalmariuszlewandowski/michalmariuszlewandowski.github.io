@@ -113,7 +113,19 @@
             \]
             We then map $\gamma(t)$ through a (trained) ReLU neural network, obtaining a sequence of activation regions $\Gamma=(\pi_1,\ldots,\pi_n)$, for $n$ intermediate points.
             Each activation region corresponds to a particular pattern of which neurons are active or inactive, denoted by 1 or 0, respectively.
-            We then define $\chi(\Gamma):=1-r_1(\Gamma)/r_2(\Gamma)$, where $r_1(\Gamma)=\max_i d_H(\pi_1,\pi_i)$ and $r_2(\Gamma)=\sum_i d_H(\pi_i,\pi_{i+1})$ is the total travel distance.
+                We then define
+    \[
+      \chi(\Gamma):=1-\frac{r_1(\Gamma)}{r_2(\Gamma)},\qquad
+      r_1(\Gamma)=\max_{i\in\{1,\ldots,n\}} d_H(\pi_1,\pi_i),\qquad
+      r_2(\Gamma)=\sum_{i=1}^{n-1} d_H(\pi_i,\pi_{i+1}).
+    \]
+    Here \(r_1\) is the largest Hamming distance from the starting pattern reached
+    along the walk, and \(r_2\) is the total Hamming distance traveled. If a straight
+    input segment maps to a shortest monotone walk in activation space, then
+    \(r_1=r_2\) and \(\chi=0\). When the distance to the start increases and then
+    decreases, the walk spends distance without moving farther from its origin;
+    \(\chi\) records this "excess" travel. For nontrivial paths, \(\chi\in[0,1]\).
+        
           </p>
           <figure class="post-figure narrow">
             <img
@@ -138,13 +150,16 @@
             />
             <figcaption>
               Mapping of a straight-path walk in input space to the discrete activation space.
-              As the path crosses activation regions, we observe that $r_1(\Gamma)$ is not monotonically increasing,
+              As the path crosses activation regions, we observe that $d_H(\pi_1,\pi_i)$ is not monotonically increasing,
               which corresponds to a physical ``folding'' of the space.
             </figcaption>
           </figure>
           <p>
             We then link $\chi$ to the generalization capacity of the network and show its sensitivity to the 
-            compactness of the representation in the Kolmogorov sense.
+            compactness of the representation in the Kolmogorov sense. 
+  A follow-up work,
+  <a class="text-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/39446">Exploiting Space Folding by Neural Networks</a>,
+  extends the measure beyond ReLU networks and studies its connection to adversarial geometry.
           </p>
           <figure class="post-figure">
             <img
