@@ -9,6 +9,7 @@
       content="Michał Lewandowski is a researcher and senior data scientist working on machine learning, neural-network geometry, quantization, mechanistic interpretability, and scientific simulation."
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
@@ -101,172 +102,121 @@
       <section id="research" class="section">
         <div class="container">
           <div class="section-heading">
-            <h2>Selected First-Author Research</h2>
-            <p>
-              The papers below are representative of my work on space folding, symmetry,
-              and geometry of neural representations. This line of work formed a substantial
-              part of my doctoral research, and I am grateful to the amazing collaborators and
-              co-authors who made these projects possible. I also include my MSc work at Inria
-              Grenoble and the University of Warsaw on finite-threshold extreme-value
-              statistics, and my BSc work at the University of Warsaw on Vessiot-Guldberg Lie
-              algebras in mathematical physics.
-            </p>
+            <h2>Selected Publications</h2>
           </div>
 
-          <div class="research-themes">
-            <div class="research-theme">
-              <h3>Neural-network geometry and folding</h3>
-              <div class="card-grid research-grid">
-            <article class="card paper-card">
-              <div class="paper-meta">Proceedings of the AAAI Conference on Artificial Intelligence (AAAI), 2026</div>
-              <h3>Exploiting Space Folding by Neural Networks</h3>
-              <p>
-                In this paper we prove several properties of the space folding measure $\chi$ along a path $\Gamma$, extend its construction to any 
-                activation function, and link it to adversarial geometry under
-                <a class="text-link" href="https://arxiv.org/abs/1706.06083">PGD</a> and
-                <a class="text-link" href="https://arxiv.org/abs/1412.6572">FGSM</a> attacks.
-              </p>
-              <div class="link-row compact">
-                <!-- Explanation page hidden while unpublished. -->
-                <a class="text-link" href="https://ojs.aaai.org/index.php/AAAI/article/view/39446">Paper</a>
+          <div class="publication-list">
+            <article class="publication-entry">
+              <div class="publication-badge">AAAI 2026</div>
+              <div class="publication-main">
+                <h3>Exploiting Space Folding by Neural Networks</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span>, Raphael Pisoni, Bernhard Heinzl, and Bernhard A. Moser</p>
+                <p class="publication-venue"><em>In Proceedings of the AAAI Conference on Artificial Intelligence, 2026</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="https://ojs.aaai.org/index.php/AAAI/article/view/39446">Paper</a>
+                </div>
               </div>
             </article>
 
-            <article class="card paper-card">
-              <div class="paper-meta">Transactions on Machine Learning Research (TMLR), 2025</div>
-              <h3>On Space Folds of ReLU Neural Networks</h3>
-              <p>
-                In this paper we ask which structures are preserved when a ReLU network maps
-                continuous input space to its discrete activation-pattern space. Focusing on
-                convexity, we show that networks with more than one hidden layer need not
-                preserve it, and introduce the space folding measure $\chi$ to quantify the
-                resulting deviations. The measure is sensitive to Kolmogorov-style compactness
-                of neural-network representations, suggesting a role in neural architecture
-                search, and correlates strongly with depth among models with low
-                generalization error.
-              </p>
-              <div class="link-row compact">
-                <a class="text-link" href="posts/on-space-folds-relu.html">Explanation</a>
-                <a class="text-link" href="https://openreview.net/forum?id=RfFqBXLDQk">Paper</a>
+            <article class="publication-entry">
+              <div class="publication-badge">
+                <span>ICLR 2026</span>
+                <span class="publication-badge-note">Workshop</span>
+              </div>
+              <div class="publication-main">
+                <h3>A Graph-Theoretical View of Space Folding via the Motzkin&ndash;Straus Framework</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span>, Bernhard Heinzl, Roman Rainer, Bernhard Nessler, and Bernhard A. Moser</p>
+                <p class="publication-venue"><em>Accepted at multiple International Conference on Learning Representations workshops, 2026</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="https://openreview.net/pdf?id=3yZQOx8zYk">Paper</a>
+                  <a class="publication-action" href="https://gram-workshop.github.io/">Workshop</a>
+                </div>
               </div>
             </article>
 
-            <article class="card paper-card">
-              <div class="paper-meta">Accepted at multiple International Conference on Learning Representations (ICLR) 2026 workshops</div>
-              <h3>A Graph-Theoretical View of Space Folding via the Motzkin–Straus Framework</h3>
-              <p>
-                In this paper we prove that the space folding measure is an analytic function
-                of the <a class="text-link" href="https://www.cambridge.org/core/journals/canadian-journal-of-mathematics/article/maxima-for-graphs-and-a-new-proof-of-a-theorem-of-turan/AC3CC45896B053B75C856F25829CA95C">Motzkin–Straus graph Lagrangian</a>,
-                thereby connecting folding to graph theory. This result turns a discrete
-                folding statistic into a form that is easier to optimize.
-              </p>
-              <div class="link-row compact">
-                <!-- <a class="text-link" href="posts/motzkin-straus-space-folding.html">Explanation</a> -->
-                <a class="text-link" href="https://openreview.net/pdf?id=3yZQOx8zYk">Paper</a>
-                <a class="text-link" href="https://gram-workshop.github.io/">Workshop</a>
+            <article class="publication-entry">
+              <div class="publication-badge">TMLR 2025</div>
+              <div class="publication-main">
+                <h3>On Space Folds of ReLU Neural Networks</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span>, Hamid Eghbalzadeh, Bernhard Heinzl, Raphael Pisoni, and Bernhard A. Moser</p>
+                <p class="publication-venue"><em>In Transactions on Machine Learning Research, 2025</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="posts/on-space-folds-relu.html">Overview</a>
+                  <a class="publication-action" href="https://openreview.net/forum?id=RfFqBXLDQk">Paper</a>
+                </div>
               </div>
             </article>
 
-            <article class="card paper-card">
-              <div class="paper-meta">Accepted at multiple International Conference on Learning Representations (ICLR) 2025 workshops</div>
-              <h3>The Space Between: On Folding, Symmetries and Sampling</h3>
-              <p>
-              This paper extends the space folding measure from activation-pattern walks to
-              walks through equivalence classes of inputs, and suggests using folding as a
-              signal during learning. The workshop paper was later expanded into the AAAI
-              paper on exploiting space folding.
-              </p>
-              <div class="link-row compact">
-                <a class="text-link" href="https://arxiv.org/abs/2503.08502">Paper</a>
-                <a class="text-link" href="https://iclr.cc/virtual/2025/33062">Workshop</a>
-                <!-- AAAI expansion page hidden while unpublished. -->
+            <article class="publication-entry">
+              <div class="publication-badge">
+                <span>ICLR 2025</span>
+                <span class="publication-badge-note">Workshop</span>
+              </div>
+              <div class="publication-main">
+                <h3>The Space Between: On Folding, Symmetries and Sampling</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span>, Bernhard Heinzl, Raphael Pisoni, and Bernhard A. Moser</p>
+                <p class="publication-venue"><em>Accepted at multiple International Conference on Learning Representations workshops, 2025</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="https://arxiv.org/abs/2503.08502">Paper</a>
+                  <a class="publication-action" href="https://iclr.cc/virtual/2025/33062">Workshop</a>
+                </div>
               </div>
             </article>
 
-            <article class="card paper-card">
-              <div class="paper-meta">NeurIPS 2024 Workshop on Symmetry and Geometry in Neural Representations</div>
-              <h3>CantorNet: A Sandbox for Testing Geometrical and Topological Complexity Measures</h3>
-              <p>
-                CantorNet is a ReLU-network family inspired by the construction of the Cantor set.
-                It analytically describes the same decision boundaries in two representations:
-                one fractal-based and one obtained by merging polyhedral bodies. The former is
-                provably the most compact representation in a Kolmogorov-style
-                <a class="text-link" href="https://doi.org/10.1016/0005-1098(78)90005-5">minimum-description-length</a>
-                sense, while the latter is the least compact.
-              </p>
-              <div class="link-row compact">
-                <a class="text-link" href="posts/cantornet.html">Explanation</a>
-                <a class="text-link" href="https://arxiv.org/abs/2411.19713">Paper</a>
-                <a class="text-link" href="https://github.com/michalmariuszlewandowski/CantorNet">Code</a>
+            <article class="publication-entry">
+              <div class="publication-badge">
+                <span>NeurIPS 2024</span>
+                <span class="publication-badge-note">Workshop</span>
+              </div>
+              <div class="publication-main">
+                <h3>CantorNet: A Sandbox for Testing Geometrical and Topological Complexity Measures</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span>, Hamid Eghbalzadeh, and Bernhard A. Moser</p>
+                <p class="publication-venue"><em>In NeurIPS Workshop on Symmetry and Geometry in Neural Representations, 2024</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="posts/cantornet.html">Overview</a>
+                  <a class="publication-action" href="https://arxiv.org/abs/2411.19713">Paper</a>
+                  <a class="publication-action" href="https://github.com/michalmariuszlewandowski/CantorNet">Code</a>
+                </div>
               </div>
             </article>
+
+            <article class="publication-entry">
+              <div class="publication-badge">
+                <span>NeurIPS 2024</span>
+                <span class="publication-badge-note">Workshop</span>
               </div>
-            </div>
-
-            <div class="research-theme">
-              <h3>Human-AI interaction</h3>
-              <div class="card-grid research-grid">
-
-            <article class="card paper-card">
-              <div class="paper-meta">NeurIPS 2024 Workshop on System-2 Reasoning at Scale</div>
-              <h3>The Turing Game</h3>
-              <p>
-                The Turing Game is a modern, gamified implementation of
-                <a class="text-link" href="https://doi.org/10.1093/mind/LIX.236.433">Turing's imitation game</a>.
-                It connects two human players with an LLM-powered chatbot in an online
-                chat-based interaction, studying whether humans can distinguish peers from
-                machines when the machine tries to blend in.
-              </p>
-              <div class="link-row compact">
-                <!-- <a class="text-link" href="posts/turing-game.html">Explanation</a> -->
-                <a class="text-link" href="https://openreview.net/forum?id=YiquAWqFw3">Paper</a>
-                <a class="text-link" href="https://www.turinggame.ai/">Project site</a>
+              <div class="publication-main">
+                <h3>The Turing Game</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span>, Simon Lucas Schmid, Patrick Mederitsch, Alexander Aufreiter, Gregor Aichinger, Felix Nessler, Severin Bergsmann, Viktor Szolga, Tobias Halmdienst, and Bernhard Nessler</p>
+                <p class="publication-venue"><em>In NeurIPS Workshop on System-2 Reasoning at Scale, 2024</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="posts/turing-game.html">Overview</a>
+                  <a class="publication-action" href="https://openreview.net/forum?id=YiquAWqFw3">Paper</a>
+                  <a class="publication-action" href="https://www.turinggame.ai/">Project site</a>
+                </div>
               </div>
             </article>
-              </div>
-            </div>
 
-            <div class="research-theme">
-              <h3>Mathematical physics</h3>
-              <div class="card-grid research-grid">
-
-            <article class="card paper-card">
-              <div class="paper-meta">Banach Center Publications, 2017</div>
-              <h3>Geometric features of Vessiot-Guldberg Lie algebras of conformal and Killing vector fields on \(\mathbb{R}^2\)</h3>
-              <p>
-                In this paper we classify finite-dimensional Vessiot-Guldberg Lie algebras of
-                conformal and Killing vector fields on the plane. It was extended from my BSc
-                thesis; the ideas therein can be used to connect preserved geometry in mathematical physics with modern
-                symmetry-aware PDE learning and neural-operator modeling.
-              </p>
-              <div class="link-row compact">
-                <!-- <a class="text-link" href="posts/vessiot-guldberg-lie-algebras.html">Explanation</a> -->
-                <a class="text-link" href="https://arxiv.org/abs/1708.09375">Paper</a>
-                <!-- <a class="text-link" href="https://doi.org/10.4064/bc113-0-13">Published version</a> -->
+            <article class="publication-entry">
+              <div class="publication-badge">MSc 2018</div>
+              <div class="publication-main">
+                <h3>Beyond the Generalized Pareto: A Fisher / Beta-Prime Tail Model for Peaks over Threshold</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span></p>
+                <p class="publication-venue"><em>MSc thesis, University of Warsaw / Inria Grenoble, 2018</em></p>
               </div>
             </article>
-              </div>
-            </div>
 
-            <div class="research-theme">
-              <h3>Statistics</h3>
-              <div class="card-grid research-grid">
-
-            <article class="card paper-card">
-              <div class="paper-meta">MSc thesis, University of Warsaw / Inria Grenoble, 2018</div>
-              <h3>Beyond the Generalized Pareto: A Fisher / Beta-Prime Tail Model for Peaks over Threshold</h3>
-              <p>
-                I studied a nested Fisher / beta-prime extension of the
-                generalized Pareto exceedance model for finite-threshold extreme-value
-                estimation. The goal was to improve tail and extreme-quantile estimation in the
-                practical regime where thresholds are high, but samples remain finite.
-              </p>
-              <div class="link-row compact">
-                <!-- <a class="text-link" href="posts/fisher-beta-prime-tail-model.html">Explanation</a> -->
+            <article class="publication-entry">
+              <div class="publication-badge">BCP 2017</div>
+              <div class="publication-main">
+                <h3>Geometric features of Vessiot-Guldberg Lie algebras of conformal and Killing vector fields on \(\mathbb{R}^2\)</h3>
+                <p class="publication-authors"><span class="self-author">Micha&#322; Lewandowski</span> and Javier de Lucas</p>
+                <p class="publication-venue"><em>In Banach Center Publications, 2017</em></p>
+                <div class="publication-actions">
+                  <a class="publication-action" href="https://arxiv.org/abs/1708.09375">Paper</a>
+                </div>
               </div>
             </article>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -338,7 +288,7 @@
             <article class="card list-card">
               <div>
                 <h3>Space Folding in Neural Networks</h3>
-                <p>Tuesday Seminar, INTEGREAT, Tromsø, Norway, 2026.</p>
+                <p>INTEGREAT Seminar, Tromsø, Norway, 2026.</p>
                 <div class="link-row compact">
                   <a class="text-link" href="https://www.integreat.no/events/public/tuesday-seminars/2026/0512.html">Seminar</a>
                   <a class="text-link" href="slides/space-folding-tromso-2026.pdf">Slides</a>
