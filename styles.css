@@ -352,6 +352,44 @@ h4 {
   color: var(--bg);
 }
 
+.applied-badge {
+  min-width: 8.4rem;
+}
+
+.applied-details {
+  margin-top: 0.55rem;
+}
+
+.applied-details summary {
+  width: max-content;
+  cursor: pointer;
+  list-style: none;
+}
+
+.applied-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.applied-details summary::marker {
+  content: "";
+}
+
+.applied-details-body {
+  margin-top: 0.55rem;
+  max-width: 50rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px dashed var(--text);
+  background: var(--surface);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.applied-details-body p {
+  margin: 0;
+}
+
 .stack {
   display: grid;
   gap: 1rem;
@@ -468,6 +506,10 @@ h4 {
   font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
   font-size: 0.9em;
   overflow-wrap: anywhere;
+}
+
+.writing-note {
+  margin-bottom: 1rem;
 }
 
 .post-content {

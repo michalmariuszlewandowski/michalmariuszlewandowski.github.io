@@ -8,8 +8,53 @@
       name="description"
       content="Michał Lewandowski is a researcher and senior data scientist working on machine learning, neural-network geometry, quantization, mechanistic interpretability, and scientific simulation."
     />
+    <meta name="google-site-verification" content="AQ_kYBxbIl9ewmDoQOOVOQXLL2bM1HwHtRT0QyReUlQ" />
+    <link rel="canonical" href="https://michalmariuszlewandowski.github.io/" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Micha&#322; Lewandowski" />
+    <meta property="og:title" content="Micha&#322; Lewandowski — Research and Projects" />
+    <meta
+      property="og:description"
+      content="Researcher working on neural-network geometry, interpretability, and scientific machine learning."
+    />
+    <meta property="og:url" content="https://michalmariuszlewandowski.github.io/" />
+    <meta property="og:image" content="https://michalmariuszlewandowski.github.io/profile-pic/malaga2026.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Micha&#322; Lewandowski — Research and Projects" />
+    <meta
+      name="twitter:description"
+      content="Researcher working on neural-network geometry, interpretability, and scientific machine learning."
+    />
+    <meta name="twitter:image" content="https://michalmariuszlewandowski.github.io/profile-pic/malaga2026.png" />
     <link rel="stylesheet" href="styles.css?v=20260621" />
     <link rel="icon" href="favicon.svg?v=20260621-ml" type="image/svg+xml" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Micha\u0142 Lewandowski",
+        "alternateName": "Michal Lewandowski",
+        "url": "https://michalmariuszlewandowski.github.io/",
+        "image": "https://michalmariuszlewandowski.github.io/profile-pic/malaga2026.png",
+        "jobTitle": "Researcher and senior data scientist",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Software Competence Center Hagenberg",
+          "url": "https://www.scch.at/"
+        },
+        "knowsAbout": [
+          "Machine learning",
+          "Neural-network geometry",
+          "Mechanistic interpretability",
+          "Scientific machine learning",
+          "Space folding"
+        ],
+        "sameAs": [
+          "https://scholar.google.com/citations?user=umFBO_gAAAAJ",
+          "https://www.linkedin.com/in/michal-mariusz-lewandowski/"
+        ]
+      }
+    </script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
@@ -47,6 +92,7 @@
         <div class="header-nav-row">
           <nav class="site-nav" aria-label="Primary">
             <a href="#research">Research</a>
+            <a href="writing.html" target="_blank" rel="noopener">Writing</a>
             <a href="#projects">Applied Work</a>
             <a href="#education">Education</a>
             <a href="#talks">Talks</a>
@@ -244,27 +290,50 @@
             </p>
           </div>
 
-          <div class="card-grid">
-            <article class="card">
-              <h3>Machine-learning surrogates for rotary-kiln calcination</h3>
-              <p>
-                At <a class="text-link" href="https://www.scch.at/">SCCH</a> I work on machine-learning surrogates
-                for calcination processes of limestone and magnesium carbonate in rotary kilns.
-                The challenge is to approximate expensive physical simulations (CFD-based) with neural operator-based approaches. 
-                 This simulation work is carried out within the
-                <a class="text-link" href="https://www.prim-rock-project.eu/">PRIM-ROCK project</a>.
-              </p>
+          <div class="publication-list applied-work-list">
+            <article class="publication-entry">
+              <div class="publication-badge applied-badge">
+                <span>Surrogate</span>
+                <span>Models</span>
+              </div>
+              <div class="publication-main">
+                <h3>Machine-learning surrogates for rotary-kiln calcination</h3>
+                <details class="applied-details">
+                  <summary class="publication-action">Details</summary>
+                  <div class="applied-details-body">
+                    <p>
+                      At <a class="text-link" href="https://www.scch.at/">SCCH</a> I work on
+                      machine-learning surrogates for calcination processes of limestone and
+                      magnesium carbonate in rotary kilns. The challenge is to approximate
+                      expensive physical simulations (CFD-based) with neural operator-based
+                      approaches. This simulation work is carried out within the
+                      <a class="text-link" href="https://www.prim-rock-project.eu/">PRIM-ROCK project</a>.
+                    </p>
+                  </div>
+                </details>
+              </div>
             </article>
 
-            <article class="card">
-              <h3>Mechanistic interpretability of activation regions</h3>
-              <p>
-                I work on questions around the semanticity of activation regions in LLMs, and
-                 the geometry of CoT. The common theme is whether the information contained in the activation space
-                 can be used to mechanistically interpret model behavior.
-              </p>
+            <article class="publication-entry">
+              <div class="publication-badge applied-badge">
+                <span>Mechanistic</span>
+                <span>Interpretability</span>
+              </div>
+              <div class="publication-main">
+                <h3>Mechanistic interpretability of activation regions</h3>
+                <details class="applied-details">
+                  <summary class="publication-action">Details</summary>
+                  <div class="applied-details-body">
+                    <p>
+                      I work on questions around the semanticity of activation regions in LLMs
+                      and the geometry of CoT. The common theme is whether the information
+                      contained in the activation space can be used to mechanistically interpret
+                      model behavior.
+                    </p>
+                  </div>
+                </details>
+              </div>
             </article>
-
           </div>
         </div>
       </section>
