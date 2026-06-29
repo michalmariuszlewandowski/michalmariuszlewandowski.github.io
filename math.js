@@ -17,6 +17,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  document.querySelectorAll(".education-toggle").forEach(function (toggle) {
+    toggle.addEventListener("click", function () {
+      var row = toggle.closest(".education-detail-row");
+      var panel = document.getElementById(toggle.getAttribute("aria-controls"));
+      var shouldOpen = toggle.getAttribute("aria-expanded") !== "true";
+
+      if (!row || !panel) {
+        return;
+      }
+
+      row.querySelectorAll(".education-toggle").forEach(function (rowToggle) {
+        rowToggle.setAttribute("aria-expanded", "false");
+      });
+
+      row.querySelectorAll(".education-detail-panel").forEach(function (rowPanel) {
+        rowPanel.hidden = true;
+      });
+
+      if (shouldOpen) {
+        toggle.setAttribute("aria-expanded", "true");
+        panel.hidden = false;
+      }
+    });
+  });
+
   if (window.renderMathInElement) {
     renderMathInElement(document.body, {
       delimiters: [

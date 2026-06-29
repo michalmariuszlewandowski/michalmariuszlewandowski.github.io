@@ -282,6 +282,11 @@ h4 {
   text-transform: uppercase;
 }
 
+.publication-group-note {
+  font-weight: 600;
+  text-transform: none;
+}
+
 .publication-entry {
   display: grid;
   grid-template-columns: 8.7rem minmax(0, 1fr);
@@ -389,6 +394,43 @@ h4 {
   line-height: 1.45;
 }
 
+.education-detail-row {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.55rem;
+}
+
+.education-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.education-toggle {
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.education-toggle[aria-expanded="true"] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.education-detail-panels {
+  display: grid;
+  max-width: 50rem;
+}
+
+.education-detail-panels .education-detail-panel {
+  margin-top: 0;
+}
+
+.education-title-body {
+  max-width: 42rem;
+  text-align: left;
+}
+
 .education-extra {
   margin-top: 1.55rem;
   padding-top: 1rem;
@@ -402,12 +444,19 @@ h4 {
 
 .education-extra-list {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .education-extra-item {
   display: grid;
-  gap: 0.12rem;
+  grid-template-columns: 8.7rem minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.education-extra-badge {
+  min-width: 5.2rem;
+  opacity: 0.86;
 }
 
 .education-extra-item h5 {
@@ -773,7 +822,8 @@ li + li {
     gap: 1.45rem;
   }
 
-  .publication-entry {
+  .publication-entry,
+  .education-extra-item {
     grid-template-columns: 1fr;
     gap: 0.55rem;
   }
