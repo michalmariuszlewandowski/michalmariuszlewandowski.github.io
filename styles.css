@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg: #fafaf9;
   --surface: #ffffff;
   --surface-muted: #f4f4f2;
@@ -10,10 +11,35 @@
   --narrow-width: 820px;
   --radius: 8px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  --header-bg: rgba(250, 250, 249, 0.86);
+  --landscape-blue: #2f64a6;
+  --landscape-rose: #aa3d60;
+  --landscape-teal: #28746b;
+  --landscape-gold: #8d6418;
+  --landscape-line: #b9b9b0;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101111;
+  --surface: #161818;
+  --surface-muted: #131515;
+  --text: #f5f5f3;
+  --muted: #b7b7b0;
+  --border: #2d3131;
+  --accent: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --header-bg: rgba(16, 17, 17, 0.86);
+  --landscape-blue: #85b5ef;
+  --landscape-rose: #f098b4;
+  --landscape-teal: #81c8b4;
+  --landscape-gold: #e9c075;
+  --landscape-line: #606761;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
+    color-scheme: dark;
     --bg: #101111;
     --surface: #161818;
     --surface-muted: #131515;
@@ -22,11 +48,21 @@
     --border: #2d3131;
     --accent: #ffffff;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --header-bg: rgba(16, 17, 17, 0.86);
+    --landscape-blue: #85b5ef;
+    --landscape-rose: #f098b4;
+    --landscape-teal: #81c8b4;
+    --landscape-gold: #e9c075;
+    --landscape-line: #606761;
   }
 }
 
 * {
   box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 html {
@@ -82,14 +118,8 @@ a {
 
 .site-header {
   border-bottom: 1px solid var(--border);
-  background: rgba(250, 250, 249, 0.86);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
-}
-
-@media (prefers-color-scheme: dark) {
-  .site-header {
-    background: rgba(16, 17, 17, 0.86);
-  }
 }
 
 .header-inner {
@@ -138,6 +168,7 @@ h4 {
 
 .site-nav {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.9rem 1.2rem;
 }
@@ -162,6 +193,42 @@ h4 {
   min-height: 2.25rem;
   padding: 0.45rem 0.8rem;
   font-size: 0.92rem;
+}
+
+.theme-toggle {
+  gap: 0.45rem;
+  padding: 0.45rem 0.8rem;
+  min-height: 2.25rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+}
+
+.theme-icon {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-icon-sun,
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+.theme-toggle:focus-visible,
+.landscape-node:focus-visible,
+.landscape-preview-link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
 }
 
 .site-nav a {
@@ -257,6 +324,164 @@ h4 {
 
 .single-card-grid {
   grid-template-columns: 1fr;
+}
+
+.landscape-section {
+  padding-top: 0.5rem;
+}
+
+.research-landscape {
+  --node-color: var(--landscape-blue);
+}
+
+.landscape-map {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1100 / 540;
+}
+
+.landscape-art,
+.landscape-nodes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.landscape-art {
+  z-index: -1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.landscape-geometry,
+[data-group="geometry"] {
+  --node-color: var(--landscape-blue);
+}
+
+.landscape-symmetry,
+[data-group="symmetry"] {
+  --node-color: var(--landscape-rose);
+}
+
+.landscape-science,
+[data-group="science"] {
+  --node-color: var(--landscape-teal);
+}
+
+.landscape-llms,
+[data-group="llms"] {
+  --node-color: var(--landscape-gold);
+}
+
+.landscape-region {
+  fill: var(--node-color);
+  fill-opacity: 0.065;
+  stroke: var(--node-color);
+  stroke-opacity: 0.42;
+  stroke-width: 1;
+  stroke-dasharray: 4 7;
+}
+
+.landscape-edge {
+  stroke: var(--landscape-line);
+  stroke-width: 1;
+  stroke-opacity: 0.55;
+  stroke-dasharray: 2 6;
+  transition: stroke-opacity 160ms ease;
+}
+
+.landscape-edge.is-connected {
+  stroke: var(--text);
+  stroke-opacity: 0.8;
+  stroke-width: 1.4;
+}
+
+.landscape-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.3rem;
+  max-width: 15rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--node-color);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--node-color);
+  font-size: clamp(0.7rem, 1.15vw, 0.86rem);
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.landscape-topic {
+  font-weight: 500;
+}
+
+.landscape-paper {
+  background: var(--node-color);
+  color: var(--surface);
+  font-size: clamp(0.68rem, 1.05vw, 0.8rem);
+  font-weight: 650;
+}
+
+.landscape-node:hover,
+.landscape-node.is-active {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--node-color) 16%, transparent);
+}
+
+.landscape-node.is-related {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--node-color) 22%, transparent);
+}
+
+.landscape-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 10rem;
+  margin-top: 0.75rem;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--node-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.landscape-preview-meta {
+  margin: 0 0 0.4rem;
+  color: var(--node-color);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.landscape-preview-title {
+  font-size: 1.02rem;
+  line-height: 1.4;
+}
+
+.landscape-preview-summary {
+  max-width: 49rem;
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.landscape-preview-link {
+  flex-shrink: 0;
+  min-height: 2.25rem;
+}
+
+.publication-entry[id] {
+  scroll-margin-top: 1.5rem;
 }
 
 .publication-list {
@@ -799,6 +1024,59 @@ li + li {
   .hero-grid,
   .card-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .landscape-map {
+    aspect-ratio: auto;
+  }
+
+  .landscape-art {
+    display: none;
+  }
+
+  .landscape-nodes {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    padding: 0 0 0.75rem;
+  }
+
+  .landscape-node {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    min-height: 2.75rem;
+    font-size: 0.8rem;
+    white-space: normal;
+  }
+
+  .landscape-topic {
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: auto;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .landscape-preview {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .landscape-node,
+  .landscape-edge {
+    transition: none;
   }
 }
 
