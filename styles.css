@@ -1066,6 +1066,11 @@ li + li {
 }
 
 @media (max-width: 760px) {
+  .hero-side .profile-photo {
+    width: min(100%, 12rem);
+    justify-self: center;
+  }
+
   .publication-action {
     min-width: 2.75rem;
     min-height: 2.75rem;
