@@ -141,7 +141,7 @@
         <div class="container">
           <div class="section-heading">
             <h2 id="landscape-heading">Research Landscape</h2>
-            <p>How my research themes, papers, and projects connect. Hover or focus a node to preview it; select it to open its page.</p>
+            <p>How my research themes, papers, and projects connect. <span class="landscape-help-hover">Hover or focus a keyword to preview it; select it to open its page.</span><span class="landscape-help-touch">Tap a keyword to preview it, then follow its links.</span></p>
           </div>
 
           <div class="research-landscape">
@@ -183,7 +183,10 @@
               </nav>
             </div>
 
-            <div class="landscape-preview" aria-live="polite" aria-atomic="true" hidden>
+            <div id="landscape-preview" class="landscape-preview" aria-live="polite" aria-atomic="true" hidden>
+              <button class="landscape-preview-close" type="button" aria-label="Close research preview" title="Close preview">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+              </button>
               <div>
                 <p class="landscape-preview-meta">Explore the connections</p>
                 <h3 class="landscape-preview-title">Geometry, symmetry, and learning</h3>
