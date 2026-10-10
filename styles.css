@@ -472,6 +472,13 @@ h4 {
   min-height: 2.25rem;
 }
 
+.landscape-preview-resources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
 .publication-entry[id] {
   scroll-margin-top: 1.5rem;
 }

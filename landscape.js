@@ -13,6 +13,7 @@
   var title = preview.querySelector(".landscape-preview-title");
   var summary = preview.querySelector(".landscape-preview-summary");
   var link = preview.querySelector(".landscape-preview-link");
+  var resources = preview.querySelector(".landscape-preview-resources");
   var initial = { meta: meta.textContent, title: title.textContent, summary: summary.textContent };
 
   function showPreview(node) {
@@ -38,10 +39,18 @@
     title.textContent = node.dataset.title;
     summary.textContent = node.dataset.summary;
     link.href = node.href;
-    link.textContent = node.classList.contains("landscape-topic") ? "Explore this area" : "Open page";
+    link.textContent = node.dataset.linkLabel ||
+      (node.classList.contains("landscape-topic") ? "Explore this area" : "Open page");
     link.target = node.target;
     link.rel = node.rel;
     link.hidden = false;
+    resources.replaceChildren();
+    var template = node.dataset.resources &&
+      landscape.querySelector("#" + node.dataset.resources);
+    resources.hidden = !template;
+    if (template) {
+      resources.appendChild(template.content.cloneNode(true));
+    }
   }
 
   function resetPreview() {
@@ -57,6 +66,8 @@
     summary.textContent = initial.summary;
     link.hidden = true;
     link.removeAttribute("href");
+    resources.replaceChildren();
+    resources.hidden = true;
   }
 
   nodes.forEach(function (node) {
