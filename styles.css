@@ -120,9 +120,17 @@ a {
 }
 
 .header-inner {
+  position: relative;
   display: grid;
   gap: 1.25rem;
   padding: 1.4rem 0;
+}
+
+.header-inner.has-theme-toggle .eyebrow {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline-end: 3.75rem;
 }
 
 .eyebrow {
@@ -193,18 +201,31 @@ h4 {
 }
 
 .theme-toggle {
-  gap: 0.45rem;
-  padding: 0.45rem 0.8rem;
-  min-height: 2.25rem;
+  position: absolute;
+  top: 1.4rem;
+  inset-inline-end: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
   color: var(--text);
   font-family: inherit;
-  font-size: 0.92rem;
   cursor: pointer;
 }
 
+.theme-toggle:hover {
+  background: var(--surface-muted);
+  border-color: var(--muted);
+}
+
 .theme-icon {
-  width: 1rem;
-  height: 1rem;
+  width: 1.25rem;
+  height: 1.25rem;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.7;
@@ -1061,6 +1082,10 @@ li + li {
 @media (max-width: 640px) {
   .header-inner {
     padding: 1rem 0;
+  }
+
+  .theme-toggle {
+    top: 1rem;
   }
 
   .hero {
