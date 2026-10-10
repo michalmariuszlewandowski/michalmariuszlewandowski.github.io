@@ -51,6 +51,7 @@
     if (template) {
       resources.appendChild(template.content.cloneNode(true));
     }
+    preview.hidden = false;
   }
 
   function resetPreview() {
@@ -68,6 +69,7 @@
     link.removeAttribute("href");
     resources.replaceChildren();
     resources.hidden = true;
+    preview.hidden = true;
   }
 
   nodes.forEach(function (node) {
