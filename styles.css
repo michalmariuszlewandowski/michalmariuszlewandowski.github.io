@@ -272,27 +272,6 @@ h4 {
   text-justify: inter-word;
 }
 
-.hero-focus {
-  margin: 1rem 0 0;
-  max-width: 46rem;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.hero-focus-card {
-  margin-top: 1rem;
-  max-width: 46rem;
-}
-
-.hero-note h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.8rem;
-}
-
-.hero-note ul {
-  margin: 0;
-}
-
 .section {
   padding: 1.5rem 0 3.5rem;
 }
@@ -1088,8 +1067,7 @@ li + li {
     padding-top: 2rem;
   }
 
-  .hero-intro,
-  .hero-focus {
+  .hero-intro {
     text-align: left;
   }
 
