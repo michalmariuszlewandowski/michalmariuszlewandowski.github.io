@@ -13,7 +13,6 @@
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   --header-bg: rgba(250, 250, 249, 0.86);
   --landscape-blue: #2f64a6;
-  --landscape-rose: #aa3d60;
   --landscape-teal: #28746b;
   --landscape-gold: #8d6418;
   --landscape-line: #b9b9b0;
@@ -31,7 +30,6 @@
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   --header-bg: rgba(16, 17, 17, 0.86);
   --landscape-blue: #85b5ef;
-  --landscape-rose: #f098b4;
   --landscape-teal: #81c8b4;
   --landscape-gold: #e9c075;
   --landscape-line: #606761;
@@ -50,7 +48,6 @@
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     --header-bg: rgba(16, 17, 17, 0.86);
     --landscape-blue: #85b5ef;
-    --landscape-rose: #f098b4;
     --landscape-teal: #81c8b4;
     --landscape-gold: #e9c075;
     --landscape-line: #606761;
@@ -355,14 +352,9 @@ h4 {
   overflow: visible;
 }
 
-.landscape-geometry,
-[data-group="geometry"] {
+.landscape-foundational,
+[data-group="foundational"] {
   --node-color: var(--landscape-blue);
-}
-
-.landscape-symmetry,
-[data-group="symmetry"] {
-  --node-color: var(--landscape-rose);
 }
 
 .landscape-science,

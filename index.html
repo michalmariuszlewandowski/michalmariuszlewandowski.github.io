@@ -7,7 +7,7 @@
     <title>Michał Lewandowski — Research and Projects</title>
     <meta
       name="description"
-      content="Michał Lewandowski is a senior researcher in AI working on the geometry of deep learning, reducing catastrophic forgetting, and neural operator methods for scientific simulation."
+      content="Michał Lewandowski is a senior researcher in AI working on neural-network geometry, mechanistic interpretability, and neural operator methods for scientific simulation."
     />
     <meta name="google-site-verification" content="AQ_kYBxbIl9ewmDoQOOVOQXLL2bM1HwHtRT0QyReUlQ" />
     <link rel="canonical" href="https://michalmariuszlewandowski.github.io/" />
@@ -129,7 +129,7 @@
               <h2>Current focus</h2>
               <ul class="clean-list">
                 <li>Space folding, symmetries, and geometry of neural networks</li>
-                <li>LLMs, post-training and catastrophic forgetting</li>
+                <li>LLM activation regions, mechanistic interpretability, and CoT geometry</li>
                 <li>Machine-learning surrogates for rotary-kiln calcination processes</li>
                 <!-- <li>Various deep learning applications</li> -->
               </ul>
@@ -156,48 +156,45 @@
           <div class="research-landscape">
             <div class="landscape-map">
               <svg class="landscape-art" viewBox="0 0 1100 540" aria-hidden="true">
-                <path class="landscape-region landscape-geometry" d="M80 135C135 65 279 34 380 72S485 166 527 241C546 295 455 358 347 359S168 377 100 322S26 210 80 135Z"/>
-                <path class="landscape-region landscape-symmetry" d="M447 151C508 82 629 32 746 48S984 68 1030 164S1014 291 934 314S770 312 661 302S388 234 447 151Z"/>
-                <path class="landscape-region landscape-science" d="M706 318C797 280 926 298 1006 350S1091 462 1018 504S814 536 727 498S596 420 647 358Z"/>
-                <path class="landscape-region landscape-llms" d="M231 354C295 324 411 316 507 337S690 391 697 457S613 529 495 520S302 514 241 466S176 384 231 354Z"/>
+                <path class="landscape-region landscape-foundational" d="M74 136C129 56 285 33 414 53S669 60 702 154S659 304 574 346S349 383 221 371S91 327 59 257S27 201 74 136Z"/>
+                <path class="landscape-region landscape-science" d="M735 88C806 37 943 29 1016 91S1080 223 1034 295S1034 431 941 466S773 469 698 421S640 299 670 238S671 131 735 88Z"/>
+                <path class="landscape-region landscape-llms" d="M251 370C330 334 457 330 562 350S691 408 701 472S613 542 488 525S298 496 241 449S204 405 251 370Z"/>
                 <g class="landscape-connections">
-                  <line class="landscape-edge" data-from="geometry" data-to="folds" x1="253" y1="70" x2="165" y2="146"/>
-                  <line class="landscape-edge" data-from="geometry" data-to="tessellation" x1="253" y1="70" x2="165" y2="238"/>
-                  <line class="landscape-edge" data-from="geometry" data-to="exploiting" x1="253" y1="70" x2="396" y2="178"/>
-                  <line class="landscape-edge" data-from="geometry" data-to="cantornet" x1="253" y1="70" x2="286" y2="313"/>
-                  <line class="landscape-edge" data-from="geometry" data-to="graph" x1="253" y1="70" x2="484" y2="270"/>
-                  <line class="landscape-edge" data-from="symmetry" data-to="folds" x1="781" y1="76" x2="165" y2="146"/>
-                  <line class="landscape-edge" data-from="symmetry" data-to="between" x1="781" y1="76" x2="638" y2="157"/>
-                  <line class="landscape-edge" data-from="symmetry" data-to="loco" x1="781" y1="76" x2="858" y2="200"/>
-                  <line class="landscape-edge" data-from="symmetry" data-to="graph" x1="781" y1="76" x2="484" y2="270"/>
-                  <line class="landscape-edge" data-from="science" data-to="loco" x1="858" y1="335" x2="858" y2="200"/>
-                  <line class="landscape-edge" data-from="science" data-to="kiln" x1="858" y1="335" x2="891" y2="427"/>
-                  <line class="landscape-edge" data-from="llms" data-to="turing" x1="396" y1="421" x2="616" y2="481"/>
-                  <line class="landscape-edge" data-from="llms" data-to="activation" x1="396" y1="421" x2="594" y2="367"/>
-                  <line class="landscape-edge" data-from="geometry" data-to="activation" x1="253" y1="70" x2="594" y2="367"/>
-                  <line class="landscape-edge" data-from="folds" data-to="cantornet" x1="165" y1="146" x2="286" y2="313"/>
-                  <line class="landscape-edge" data-from="exploiting" data-to="graph" x1="396" y1="178" x2="484" y2="270"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="folds" x1="308" y1="65" x2="176" y2="135"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="tessellation" x1="308" y1="65" x2="187" y2="221"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="exploiting" x1="308" y1="65" x2="451" y2="146"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="cantornet" x1="308" y1="65" x2="396" y2="232"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="graph" x1="308" y1="65" x2="539" y2="308"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="between" x1="308" y1="65" x2="187" y2="329"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="lie" x1="308" y1="65" x2="649" y2="216"/>
+                  <line class="landscape-edge" data-from="science" data-to="loco" x1="891" y1="76" x2="880" y2="184"/>
+                  <line class="landscape-edge" data-from="science" data-to="kiln" x1="891" y1="76" x2="913" y2="378"/>
+                  <line class="landscape-edge" data-from="llms" data-to="turing" x1="385" y1="437" x2="616" y2="502"/>
+                  <line class="landscape-edge" data-from="llms" data-to="activation" x1="385" y1="437" x2="605" y2="373"/>
+                  <line class="landscape-edge" data-from="foundational" data-to="activation" x1="308" y1="65" x2="605" y2="373"/>
+                  <line class="landscape-edge" data-from="lie" data-to="loco" x1="649" y1="216" x2="880" y2="184"/>
+                  <line class="landscape-edge" data-from="folds" data-to="cantornet" x1="176" y1="135" x2="396" y2="232"/>
+                  <line class="landscape-edge" data-from="exploiting" data-to="graph" x1="451" y1="146" x2="539" y2="308"/>
                 </g>
               </svg>
 
               <nav class="landscape-nodes" aria-label="Research landscape">
-                <a class="landscape-node landscape-topic landscape-geometry" style="--x:23%;--y:13%" href="#research" data-node="geometry" data-group="geometry" data-meta="Research area" data-title="Neural-network geometry" data-summary="How activation regions, convexity, and space folding describe the geometry of neural networks.">Neural-network geometry</a>
-                <a class="landscape-node landscape-paper landscape-geometry" style="--x:15%;--y:27%" href="posts/on-space-folds-relu.html" data-node="folds" data-group="geometry" data-meta="TMLR 2025" data-title="On Space Folds of ReLU Neural Networks" data-summary="Which geometric structures survive the mapping from continuous input space to discrete activation patterns? A measure of space folding captures departures from convexity.">On Space Folds</a>
-                <a class="landscape-node landscape-paper landscape-geometry" style="--x:15%;--y:44%" href="https://www.ijcai.org/proceedings/2022/463" target="_blank" rel="noopener noreferrer" data-node="tessellation" data-group="geometry" data-meta="IJCAI 2022" data-title="Tessellation-Filtering ReLU Neural Networks" data-summary="A geometric approach to ReLU networks through the tessellations they induce in input space.">Tessellation Filtering</a>
-                <a class="landscape-node landscape-paper landscape-geometry" style="--x:36%;--y:33%" href="https://ojs.aaai.org/index.php/AAAI/article/view/39446" target="_blank" rel="noopener noreferrer" data-node="exploiting" data-group="geometry" data-meta="AAAI 2026" data-title="Exploiting Space Folding by Neural Networks" data-summary="Exploring space folding as a tool for understanding neural networks, including its relationship to depth, width, and training.">Exploiting Space Folding</a>
-                <a class="landscape-node landscape-paper landscape-geometry" style="--x:26%;--y:58%" href="posts/cantornet.html" data-node="cantornet" data-group="geometry" data-meta="NeurIPS 2024 workshop" data-title="CantorNet: A Sandbox for Testing Geometrical and Topological Complexity Measures" data-summary="Different ReLU architectures realize the same decision boundaries, providing a controlled sandbox for comparing measures of geometric and topological complexity.">CantorNet</a>
-                <a class="landscape-node landscape-paper landscape-geometry" style="--x:44%;--y:50%" href="posts/motzkin-straus-space-folding.html" data-node="graph" data-group="geometry" data-meta="ICLR 2026 workshops" data-title="A Graph-Theoretical View of Space Folding via the Motzkin-Straus Framework" data-summary="Using graph theory to turn a discrete space-folding measure into a continuous optimization problem.">Graph Theory &amp; Folding</a>
+                <a class="landscape-node landscape-topic landscape-foundational" style="--x:28%;--y:12%" href="#research" data-node="foundational" data-group="foundational" data-meta="Research area" data-title="Foundational Research" data-summary="Space folding, ReLU tessellations, graph theory, and Lie symmetries: geometric and mathematical questions behind my research.">Foundational Research</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:16%;--y:25%" href="posts/on-space-folds-relu.html" data-node="folds" data-group="foundational" data-meta="TMLR 2025" data-title="On Space Folds of ReLU Neural Networks" data-summary="Which geometric structures survive the mapping from continuous input space to discrete activation patterns? A measure of space folding captures departures from convexity.">On Space Folds</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:41%;--y:27%" href="https://ojs.aaai.org/index.php/AAAI/article/view/39446" target="_blank" rel="noopener noreferrer" data-node="exploiting" data-group="foundational" data-meta="AAAI 2026" data-title="Exploiting Space Folding by Neural Networks" data-summary="Exploring space folding as a tool for understanding neural networks, including its relationship to depth, width, and training.">Exploiting Space Folding</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:17%;--y:41%" href="https://www.ijcai.org/proceedings/2022/463" target="_blank" rel="noopener noreferrer" data-node="tessellation" data-group="foundational" data-meta="IJCAI 2022" data-title="Tessellation-Filtering ReLU Neural Networks" data-summary="A geometric approach to ReLU networks through the tessellations they induce in input space.">Tessellation Filtering</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:36%;--y:43%" href="posts/cantornet.html" data-node="cantornet" data-group="foundational" data-meta="NeurIPS 2024 workshop" data-title="CantorNet: A Sandbox for Testing Geometrical and Topological Complexity Measures" data-summary="Different ReLU architectures realize the same decision boundaries, providing a controlled sandbox for comparing measures of geometric and topological complexity.">CantorNet</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:49%;--y:57%" href="posts/motzkin-straus-space-folding.html" data-node="graph" data-group="foundational" data-meta="ICLR 2026 workshops" data-title="A Graph-Theoretical View of Space Folding via the Motzkin-Straus Framework" data-summary="Using graph theory to turn a discrete space-folding measure into a continuous optimization problem.">Graph Theory &amp; Folding</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:17%;--y:61%" href="https://arxiv.org/abs/2503.08502" target="_blank" rel="noopener noreferrer" data-node="between" data-group="foundational" data-meta="ICLR 2025 workshops" data-title="The Space Between: On Folding, Symmetries and Sampling" data-summary="Studying connections between space folding, symmetries, and sampling in neural networks.">The Space Between</a>
+                <a class="landscape-node landscape-paper landscape-foundational" style="--x:59%;--y:40%" href="posts/vessiot-guldberg-lie-algebras.html" data-node="lie" data-group="foundational" data-meta="Banach Center Publications 2017 · with Javier de Lucas" data-title="Geometric features of Vessiot-Guldberg Lie algebras" data-summary="A mathematical study of conformal and Killing vector-field Lie algebras on the plane and the geometric structures they preserve. The shared language of Lie generators provides a thematic connection to symmetry-aware neural operators.">Lie Algebras &amp; Geometry</a>
 
-                <a class="landscape-node landscape-topic landscape-symmetry" style="--x:71%;--y:14%" href="#paper-loco" data-node="symmetry" data-group="symmetry" data-meta="Research area" data-title="Symmetries &amp; neural operators" data-summary="Connecting invariant geometric structures with symmetry-aware learning, from activation patterns to operators for physical systems.">Symmetries &amp; neural operators</a>
-                <a class="landscape-node landscape-paper landscape-symmetry" style="--x:58%;--y:29%" href="https://arxiv.org/abs/2503.08502" target="_blank" rel="noopener noreferrer" data-node="between" data-group="symmetry" data-meta="ICLR 2025 workshops" data-title="The Space Between: On Folding, Symmetries and Sampling" data-summary="Studying connections between space folding, symmetries, and sampling in neural networks.">The Space Between</a>
-                <a class="landscape-node landscape-paper landscape-symmetry" style="--x:78%;--y:37%" href="https://openreview.net/forum?id=AQIyD6jSSl" target="_blank" rel="noopener noreferrer" data-node="loco" data-group="symmetry" data-meta="TMLR 2026" data-title="LOCO: Local Orbit Consistency for Symmetry-Robust Neural Operators" data-summary="A training objective that encourages neural operators to respect known symmetries using consistency between predictions, without changing the architecture or inference.">LOCO</a>
+                <a class="landscape-node landscape-topic landscape-science" style="--x:81%;--y:14%" href="#project-surrogates" data-node="science" data-group="science" data-meta="Research area" data-title="Scientific ML" data-summary="Neural operators and surrogate models for physical simulation, including LOCO and PRIM-ROCK rotary-kiln modeling.">Scientific ML</a>
+                <a class="landscape-node landscape-paper landscape-science" style="--x:80%;--y:34%" href="https://openreview.net/forum?id=AQIyD6jSSl" target="_blank" rel="noopener noreferrer" data-node="loco" data-group="science" data-meta="TMLR 2026" data-title="LOCO: Local Orbit Consistency for Symmetry-Robust Neural Operators" data-summary="A training objective that encourages neural operators to respect known PDE symmetries, including Galilean transformations, using consistency between predictions without changing the architecture or inference.">LOCO</a>
+                <a class="landscape-node landscape-paper landscape-science" style="--x:83%;--y:70%" href="#project-surrogates" data-node="kiln" data-group="science" data-meta="Applied work · PRIM-ROCK" data-title="Machine-learning surrogates for rotary-kiln calcination" data-summary="Neural operator-based surrogates for expensive CFD simulations of limestone and magnesium carbonate calcination in rotary kilns.">PRIM-ROCK Surrogates</a>
 
-                <a class="landscape-node landscape-topic landscape-science" style="--x:78%;--y:62%" href="#project-surrogates" data-node="science" data-group="science" data-meta="Research area" data-title="Scientific machine learning" data-summary="Learning surrogate models for physical simulation, with neural operators and known symmetries as sources of structure.">Scientific machine learning</a>
-                <a class="landscape-node landscape-paper landscape-science" style="--x:81%;--y:79%" href="#project-surrogates" data-node="kiln" data-group="science" data-meta="Applied work · PRIM-ROCK" data-title="Machine-learning surrogates for rotary-kiln calcination" data-summary="Neural operator-based surrogates for expensive CFD simulations of limestone and magnesium carbonate calcination in rotary kilns.">Rotary-Kiln Surrogates</a>
-
-                <a class="landscape-node landscape-topic landscape-llms" style="--x:36%;--y:78%" href="#project-interpretability" data-node="llms" data-group="llms" data-meta="Research area" data-title="LLMs &amp; interpretability" data-summary="Understanding activation regions and model behavior, alongside interests in post-training, catastrophic forgetting, and human-AI interaction.">LLMs &amp; interpretability</a>
-                <a class="landscape-node landscape-paper landscape-llms" style="--x:54%;--y:68%" href="#project-interpretability" data-node="activation" data-group="llms" data-meta="Ongoing research" data-title="Mechanistic interpretability of activation regions" data-summary="Studying the semanticity of activation regions in LLMs and the geometry of chain of thought, to better understand model behavior.">Activation Regions</a>
-                <a class="landscape-node landscape-paper landscape-llms" style="--x:56%;--y:89%" href="posts/turing-game.html" data-node="turing" data-group="llms" data-meta="NeurIPS 2024 workshop" data-title="The Turing Game" data-summary="A public, gamified experiment studying whether people can distinguish human chat partners from AI chatbots.">The Turing Game</a>
+                <a class="landscape-node landscape-topic landscape-llms" style="--x:35%;--y:81%" href="#project-interpretability" data-node="llms" data-group="llms" data-meta="Research area" data-title="LLM behavior &amp; interpretability" data-summary="Understanding activation-region semantics, the geometry of chain of thought, model behavior, and human-AI interaction.">LLM behavior &amp; interpretability</a>
+                <a class="landscape-node landscape-paper landscape-llms" style="--x:55%;--y:69%" href="#project-interpretability" data-node="activation" data-group="llms" data-meta="Ongoing research" data-title="Mechanistic interpretability of activation regions" data-summary="Studying the semanticity of activation regions in LLMs and the geometry of chain of thought, to better understand model behavior.">Activation Regions</a>
+                <a class="landscape-node landscape-paper landscape-llms" style="--x:56%;--y:93%" href="posts/turing-game.html" data-node="turing" data-group="llms" data-meta="NeurIPS 2024 workshop" data-title="The Turing Game" data-summary="A public, gamified experiment studying whether people can distinguish human chat partners from AI chatbots.">The Turing Game</a>
               </nav>
             </div>
 
