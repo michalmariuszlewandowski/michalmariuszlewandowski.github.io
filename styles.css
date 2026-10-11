@@ -644,6 +644,39 @@ h4 {
   min-width: 8.4rem;
 }
 
+.experience-education-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.card .experience-education-title {
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+}
+
+.experience-education-grid .publication-main h4 {
+  margin-bottom: 0.3rem;
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.employment-card .publication-entry {
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.employment-card .education-detail-panel {
+  text-align: left;
+}
+
+.education-card .publication-entry,
+.education-card .education-extra-item {
+  grid-template-columns: 5.2rem minmax(0, 1fr);
+}
+
 .education-thesis-list {
   gap: 1.35rem;
 }
@@ -657,6 +690,10 @@ h4 {
   color: var(--muted);
   font-size: 0.93rem;
   line-height: 1.45;
+}
+
+.card .education-overlap-note {
+  font-size: 0.86rem;
 }
 
 .education-detail-row {
@@ -1060,7 +1097,8 @@ li + li {
 
 @media (max-width: 900px) {
   .hero-grid,
-  .card-grid {
+  .card-grid,
+  .experience-education-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1169,7 +1207,9 @@ li + li {
   }
 
   .publication-entry,
-  .education-extra-item {
+  .education-extra-item,
+  .experience-education-grid .publication-entry,
+  .experience-education-grid .education-extra-item {
     grid-template-columns: 1fr;
     gap: 0.55rem;
   }
