@@ -7,13 +7,13 @@
     <title>A Graph-Theoretical View of Space Folding | Micha&#322; Lewandowski</title>
     <meta
       name="description"
-      content="A graph-theoretical view of space folding that connects activation-pattern walks to the Motzkin-Straus framework."
+      content="An intuitive overview of the equivalence between space folding, overlapping mismatch intervals, clique numbers, and the Motzkin-Straus graph Lagrangian."
     />
     <link rel="canonical" href="https://michalmariuszlewandowski.github.io/posts/motzkin-straus-space-folding.html" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Michał Lewandowski" />
     <meta property="og:title" content="A Graph-Theoretical View of Space Folding" />
-    <meta property="og:description" content="Activation-pattern walks, graph objectives, and continuous Motzkin-Straus formulations for neural-network folding." />
+    <meta property="og:description" content="From activation walks to interval graphs: an equivalent interpretation of space folding through the Motzkin-Straus theorem." />
     <meta property="og:url" content="https://michalmariuszlewandowski.github.io/posts/motzkin-straus-space-folding.html" />
     <meta property="og:image" content="https://michalmariuszlewandowski.github.io/profile-pic/malaga2026.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -56,10 +56,10 @@
       <article class="post-shell">
         <header class="post-heading">
           <div class="paper-meta">Accepted at multiple International Conference on Learning Representations (ICLR) 2026 workshops</div>
-          <h1>A Graph-Theoretical View of Space Folding via the Motzkin-Straus Framework</h1>
+          <h1>A Graph-Theoretical View of Space Folding via the Motzkin&ndash;Straus Framework</h1>
           <p class="post-summary">
-            How graph theory can turn a discrete folding measure into a continuous optimization
-            problem.
+            From activation walks to interval graphs: an equivalent interpretation of space
+            folding through a classical theorem in graph theory.
           </p>
           <ul class="author-list" aria-label="Authors">
             <li>
@@ -71,7 +71,7 @@
               <span class="author-links">[<a class="text-link" href="https://at.linkedin.com/in/bernhard-heinzl/en">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=i90BqfIAAAAJ">Google Scholar</a>]</span>
             </li>
             <li>
-              <span class="author-name">Roman Rainer</span>
+              <span class="author-name">Roman J. Rainer</span>
               <span class="author-links">[<a class="text-link" href="https://at.linkedin.com/in/romanrainer">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=zC0AAHAAAAAJ">Google Scholar</a>]</span>
             </li>
             <li>
@@ -91,52 +91,108 @@
         </header>
 
         <div class="post-content">
-          <h2>Problem Statement</h2>
+          <h2>Overview</h2>
           <p>
-            Folding can be described by looking at how a path moves through activation patterns.
-            Once those patterns are treated as vertices, the path induces a graph-like object.
+            A neural network can send a straight input segment through a sequence of activation
+            patterns that moves away from the starting pattern and then turns back towards it.
+            Our earlier <a class="text-link" href="on-space-folds-relu.html">space-folding work</a>
+            measures this behaviour using the distance travelled and the greatest distance
+            reached. Here we show that the same quantity can be read from a graph and expressed
+            through the classical Motzkin&ndash;Straus theorem.
           </p>
-          <figure class="post-figure">
+          <p>
+            Each binary activation pattern records the states of the network's neurons.
+            The Hamming distance between two patterns counts how many states differ. For a
+            walk \(\Gamma\), write \(r\) for its greatest Hamming distance from the start
+            and \(L\) for the total distance travelled. For \(L&gt;0\), the folding measure is
+          </p>
+          \[
+            \chi(\Gamma)=1-\frac{r}{L}.
+          \]
+          <h2 id="equivalent-folding">From activation patterns to overlapping intervals</h2>
+          <p>
+            The construction starts by recording when each neuron's state differs from its
+            initial state. These mismatches occur in contiguous blocks along the walk. If a
+            transition changes several bits, we refine it into single-bit steps, undoing
+            mismatches before creating new ones. This ordering preserves both \(r\) and
+            \(L\), so the folding value stays the same.
+          </p>
+          <p>
+            We create one graph vertex for each mismatch block and join two vertices when
+            their intervals overlap. A neuron can contribute several separate blocks, each
+            with its own vertex. This splitting is essential: it gives an interval graph
+            \(G^*\) in which a clique, a group of mutually connected vertices, corresponds
+            to intervals sharing a common time.
+          </p>
+          <p>
+            At any step, the number of overlapping intervals equals the number of neurons
+            whose states differ from the start. The largest overlap therefore equals \(r\),
+            and also the clique number \(\omega\) of \(G^*\). The folding measure becomes
+            \(\chi=1-\omega/L\).
+          </p>
+          <p>
+            Consider \(100\to101\to111\to110\). The third bit differs from its starting
+            value at the second and third patterns; the second bit differs at the third and
+            fourth. Their intervals overlap at \(111\), giving two vertices joined by an
+            edge. Thus \(\omega=2\), \(L=3\), and \(\chi=1/3\).
+          </p>
+          <figure class="post-figure narrow">
             <img
-              src="figs/motzkin-straus-construction-outline.png"
-              width="2000"
-              height="99"
+              src="figs/motzkin-straus-interval-example.svg"
+              width="440"
+              height="440"
               loading="lazy"
-              alt="Construction outline from an input segment to an activation walk, refined graph, clique number, and Motzkin-Straus folding expression."
+              alt="The walk 100, 101, 111, 110 has two mismatch intervals: bit 3 at patterns 2 and 3, and bit 2 at patterns 3 and 4. They overlap at 111, producing a graph with two adjacent vertices and clique number 2."
             />
             <figcaption>
-              Construction outline: an input segment induces an activation walk, the walk is refined
-              into a mismatch graph, and Motzkin-Straus turns the resulting clique objective into a
-              continuous folding expression.
+              Each vertex represents a mismatch interval. Their overlap records the greatest
+              distance reached from the starting pattern.
             </figcaption>
           </figure>
-          <h2 id="equivalent-folding">An equivalent interpretation of space folding</h2>
+          <h2>An equivalent continuous formulation</h2>
           <p>
-            The contribution is an equivalent interpretation of space folding through the
-            Motzkin-Straus graph Lagrangian. The activation-pattern walk gives a graph whose
-            structure connects the folding measure to a continuous graph objective. In the
-            <a class="text-link" href="https://doi.org/10.4153/cjm-1965-053-6">Motzkin-Straus framework</a>,
-            this objective is expressed as an optimization problem over the simplex:
+            The <a class="text-link" href="https://doi.org/10.4153/cjm-1965-053-6">Motzkin&ndash;Straus theorem</a>
+            gives a continuous characterization of a graph's clique number. Let \(A\) be
+            the adjacency matrix of \(G^*\), and let \(\Delta\) contain all nonnegative
+            vertex weights \(p\) that sum to one. Using the adjacency-matrix normalization,
+            the graph Lagrangian is
+          </p>
+          \[
+            \Lambda=\max_{p\in\Delta}p^\top A p.
+          \]
+          <p>
+            This quadratic objective rewards weight placed on connected vertices. Its maximum
+            is attained by distributing weight uniformly over a largest clique, and the theorem
+            gives
+          </p>
+          \[
+            \Lambda=1-\frac{1}{\omega}.
+          \]
+          <p>
+            Substituting this identity into the folding measure establishes the equivalence:
+          </p>
+          \[
+            \chi(\Gamma)=1-\frac{1}{L(1-\Lambda)}.
+          \]
+          <p>
+            In our two-vertex example, equal weights give \(\Lambda=1/2\), recovering
+            \(\chi=1/3\). The paper also gives an exact computation from the walk: tracking
+            the largest number of simultaneous mismatches yields \(\omega\), and hence
+            \(\Lambda\), without constructing every graph edge.
           </p>
           <p>
-            \[
-              \max_{x\in\Delta}\sum_{(i,j)\in E}x_i x_j.
-            \]
-          </p>
-          <p>
-            Discrete graph quantities are often difficult to optimize directly during
-            neural-network training. A continuous objective is compatible with gradient-based
-            optimization.
-          </p>
-          <p>
-            More generally, an interpretability statistic can become a training signal once it is
-            expressed in a differentiable mathematical form.
+            This connects a geometric statistic of neural representations to tools developed
+            in graph theory and continuous optimization. The quadratic formulation also
+            motivates a route towards folding-based regularization. To use it during training,
+            one would additionally need to handle how binary activation patterns and their
+            interval graph change with the network parameters. The exact equivalence provides
+            the mathematical starting point for that direction.
           </p>
           <section class="bibtex" aria-labelledby="bibtex">
             <h2 id="bibtex">BibTeX</h2>
             <pre><code>@inproceedings{lewandowski2026graph,
   title = {A Graph-Theoretical View of Space Folding via the {Motzkin--Straus} Framework},
-  author = {Lewandowski, Michal and Heinzl, Bernhard and Rainer, Roman and Nessler, Bernhard and Moser, Bernhard A.},
+  author = {Lewandowski, Michal and Heinzl, Bernhard and Rainer, Roman J. and Nessler, Bernhard and Moser, Bernhard A.},
   booktitle = {ICLR 2026 Workshop GRaM},
   year = {2026},
   url = {https://openreview.net/forum?id=3yZQOx8zYk},

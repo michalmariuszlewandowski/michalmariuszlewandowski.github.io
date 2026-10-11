@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../theme.js?v=20261010-landscape-theme"></script>
+    <title>Tessellation-Filtering ReLU Neural Networks | Micha&#322; Lewandowski</title>
+    <meta
+      name="description"
+      content="An intuitive overview of tessellation-filtering ReLU networks: decision-boundary geometry, Boolean constructions, notch-based shape complexity, and local representations."
+    />
+    <link rel="canonical" href="https://michalmariuszlewandowski.github.io/posts/tessellation-filtering-relu.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Michał Lewandowski" />
+    <meta property="og:title" content="Tessellation-Filtering ReLU Neural Networks" />
+    <meta property="og:description" content="How ReLU networks combine existing geometric pieces, and how deviations from convexity reveal the shape of a decision boundary." />
+    <meta property="og:url" content="https://michalmariuszlewandowski.github.io/posts/tessellation-filtering-relu.html" />
+    <meta property="og:image" content="https://michalmariuszlewandowski.github.io/profile-pic/malaga2026.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="../styles.css?v=20261010-landscape-theme" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css"
+      integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"
+      integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
+      integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="../math.js?v=20260629-edu"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <p class="eyebrow">Micha&#322; Lewandowski</p>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="../index.html#research">Research</a>
+          <a href="../index.html#projects">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content" class="post-main">
+      <article class="post-shell">
+        <header class="post-heading">
+          <div class="paper-meta">IJCAI 2022</div>
+          <h1>Tessellation-Filtering ReLU Neural Networks</h1>
+          <p class="post-summary">
+            How ReLU networks combine existing geometric pieces, and how deviations from
+            convexity reveal the shape of a decision boundary.
+          </p>
+          <ul class="author-list" aria-label="Authors">
+            <li>
+              <span class="author-name">Bernhard A. Moser</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/bernhard-moser-00794988/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.at/citations?hl=en&amp;user=_DuPpPEAAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li>
+              <span class="author-name">Michal Lewandowski</span>
+              <span class="author-links">[<a class="text-link" href="https://www.linkedin.com/in/michal-mariusz-lewandowski/">LinkedIn</a>, <a class="text-link" href="https://scholar.google.com/citations?user=umFBO_gAAAAJ">Google Scholar</a>]</span>
+            </li>
+            <li><span class="author-name">Somayeh Kargaran</span></li>
+            <li><span class="author-name">Werner Zellinger</span></li>
+            <li><span class="author-name">Battista Biggio</span></li>
+            <li><span class="author-name">Christoph Koutschan</span></li>
+          </ul>
+          <div class="link-row">
+            <a class="button" href="https://www.ijcai.org/proceedings/2022/463">Paper</a>
+            <a class="button" href="../index.html#research">Back to research</a>
+          </div>
+        </header>
+
+        <div class="post-content">
+          <h2>Overview</h2>
+          <p>
+            A ReLU network divides input space into regions within which it acts affinely.
+            Counting these regions describes one aspect of the network's representation, but
+            the same decision boundary can be realized by architectures with very different
+            counts. This raises a geometric question: how can we describe the complexity of
+            the classification itself?
+          </p>
+          <p>
+            To study this, we represent one class as the zero set of a nonnegative ReLU
+            network \(N\). An input belongs to that class when \(N(x)=0\); the other
+            class has \(N(x)&gt;0\). This lets us reason about decision geometry through
+            sets and logical operations:
+          </p>
+          \[
+            C=\{x:N(x)=0\}.
+          \]
+          <p>
+            Our central construction is a tessellation-filtering network: a network that
+            combines geometric pieces already supplied by another network. Its output can
+            change how these pieces form a class region while keeping or reducing the
+            decision-relevant halfspace tessellation. Here a tessellation is a partition into
+            cells, and a halfspace is one side of a hyperplane. Halfspaces that do not affect
+            the classification are removed to obtain the effective tessellation.
+          </p>
+          <h2>Combining pieces through Boolean structure</h2>
+          <p>
+            Let a body network \(V\) produce nonnegative outputs \(y_1,y_2,y_3\).
+            A simple filtering network placed on top is
+          </p>
+          \[
+            U(y)=\min\{y_1+y_2,\,y_3\}.
+          \]
+          <p>
+            Because the outputs are nonnegative, \(U(y)=0\) precisely when
+            \(y_1=y_2=0\), or when \(y_3=0\). The sum expresses an AND condition:
+            both terms must vanish. The minimum expresses an OR condition: either branch
+            can vanish. More generally, minima of sums give unions of intersections of
+            zero sets. These operations can be implemented by ReLU networks, connecting
+            the geometry of the classifier to Boolean algebra.
+          </p>
+          <p>
+            The composition \(U\circ V\) selects and combines cells using the existing
+            geometric structure. Its implementation may contain additional internal
+            activation regions, while its effective halfspace tessellation introduces no
+            new decision-relevant cuts. This distinction explains why the number of linear
+            regions alone can give an incomplete picture of decision-boundary complexity.
+          </p>
+          <h2>Measuring shape through notches</h2>
+          <p>
+            We describe shape complexity by counting deviations from convexity, which we
+            call notches. An out-notch is a convex piece outside the class that lies between
+            parts of it; an in-notch describes the corresponding situation after exchanging
+            the two classes. A minimal exhaustive configuration of these pieces gives the
+            notch count. This captures features that counting connected components or holes
+            can miss: a connected region without holes can still have a ragged boundary.
+          </p>
+          <figure class="post-figure narrow">
+            <img
+              src="figs/tessellation-notches.png"
+              width="740"
+              height="245"
+              loading="lazy"
+              alt="Two grey class regions showing an in-notch as a triangular protrusion and an out-notch as a triangular indentation. Dashed lines indicate the enclosing convex shapes."
+            />
+            <figcaption>
+              In-notches and out-notches as two types of deviations from convexity
+              (Figure 2 of the <a class="text-link" href="https://www.ijcai.org/proceedings/2022/463">paper</a>).
+            </figcaption>
+          </figure>
+          <p>
+            The halfspace tessellation lets us translate this geometry into binary patterns:
+            each bit records which side of a hyperplane contains an input. Hamming distance
+            counts changes of side. A convex set of patterns contains every shortest
+            Hamming path between any two of its elements. Establishing the correspondence
+            with convex arrangements of cells makes Boolean methods available for shape
+            analysis. The resulting notch numbers are invariant across architectures that
+            realize the same classification.
+          </p>
+          <h2>Local geometry and simpler representations</h2>
+          <p>
+            Our local representation theorem separates the classification into an underlying
+            halfspace tessellation and a filtering component describing how its cells are
+            combined. On a suitable neighbourhood of an input, this representation can
+            extend across several cells, retaining information about nonconvexity that a
+            single affine region cannot show.
+          </p>
+          <p>
+            Replacing the filtering component with one of lower shape complexity provides a
+            way to simplify the decision surface, motivating an approach to pruning. The
+            paper develops this theory, a sample-based approximation of local shape
+            complexity, and illustrative examples with increasingly ragged boundaries.
+            The Cantor-inspired example also connects to the analytically known shapes
+            explored in <a class="text-link" href="cantornet.html">CantorNet</a>.
+            Computing the full halfspace tessellation is demanding, so applying the
+            construction to selected top layers is a natural direction for further work.
+          </p>
+          <section class="bibtex" aria-labelledby="bibtex">
+            <h2 id="bibtex">BibTeX</h2>
+            <pre><code>@inproceedings{moser2022tessellation,
+  title = {Tessellation-Filtering {ReLU} Neural Networks},
+  author = {Moser, Bernhard A. and Lewandowski, Michal and Kargaran, Somayeh and Zellinger, Werner and Biggio, Battista and Koutschan, Christoph},
+  booktitle = {Proceedings of the Thirty-First International Joint Conference on Artificial Intelligence},
+  pages = {3335--3341},
+  year = {2022},
+  doi = {10.24963/ijcai.2022/463},
+  url = {https://www.ijcai.org/proceedings/2022/463}
+}</code></pre>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><a class="text-link" href="../index.html">Home</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
