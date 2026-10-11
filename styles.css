@@ -308,6 +308,13 @@ h4 {
   margin-bottom: 1.35rem;
 }
 
+.section-heading-note {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.55em;
+  font-weight: 400;
+}
+
 .section-heading p {
   margin: 0.8rem 0 0;
   color: var(--muted);
